@@ -1,0 +1,49 @@
+# Ignore Visual Studio build results
+[Bb]in/
+[Oo]bj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# MonoDevelop
+.vs/
+
+# Build results
+*.exe
+*.pdb
+*.cache
+*.log
+*.vspscc
+*.vssscc
+*.dbmdl
+*.bak
+*.swp
+
+# NuGet packages
+*.nupkg
+packages/
+
+# Windows image file caches
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+# Others
+TestResults/
+*.TestResults
+*.vscode/
+*.DS_Store
+*.idea/
+*.orig
+*.rej
+*.sln.ide
+publish/*
+AeroMax/AeroMax/AeroMax_TemporaryKey.pfx
+
+
+# Uncomment if using JetBrains Rider
+# .idea/

@@ -1,0 +1,52 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Application Colors -->
+    <Color x:Key="PrimaryBlackColor">#0F1217</Color>
+    <Color x:Key="SecondaryBlackColorColor">#232323</Color>
+    <Color x:Key="SelectedGradientStartColor">#FF8A65</Color>
+    <Color x:Key="SelectedGradientEndColor">#FFB6B6</Color>
+    <Color x:Key="NormalGradientStartColor">#555555</Color>
+    <Color x:Key="NormalGradientEndColor">#777777</Color>
+    <Color x:Key="AccentColor">#FF6B35</Color>
+    <Color x:Key="LightRedColor">#FF7253</Color>
+    
+    <!-- Brushes -->
+    <SolidColorBrush x:Key="PrimaryBlackBrush" Color="{StaticResource PrimaryBlackColor}"/>
+    <SolidColorBrush x:Key="SecondaryBlackBrush" Color="{StaticResource SecondaryBlackColorColor}"/>
+    <SolidColorBrush x:Key="GrayTextBrush" Color="Gray"/>
+    <SolidColorBrush x:Key="WhiteTextBrush" Color="White"/>
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+    <SolidColorBrush x:Key="LightRedBrush" Color="{StaticResource LightRedColor}"/>
+    
+    <LinearGradientBrush x:Key="SelectedGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="{StaticResource SelectedGradientStartColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource SelectedGradientEndColor}" Offset="1"/>
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="NormalGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="{StaticResource NormalGradientStartColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource NormalGradientEndColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Common Dimensions -->
+    <system:Double x:Key="MenuItemWidth">110</system:Double>
+    <system:Double x:Key="MenuItemHeight">107</system:Double>
+    <system:Double x:Key="IconButtonWidth">80</system:Double>
+    <system:Double x:Key="IconButtonHeight">80</system:Double>
+    <system:Double x:Key="StandardCornerRadius">8</system:Double>
+    <system:Double x:Key="HorizontalTabControlWidth">200</system:Double>
+
+    <!-- Font Sizes -->
+    <!--<system:Double x:Key="SmallFontSize">11</system:Double>
+    <system:Double x:Key="NormalFontSize">13</system:Double>
+    <system:Double x:Key="LargeFontSize">16</system:Double>-->
+    <system:Double x:Key="FontSize18">18</system:Double>
+    <system:Double x:Key="FontSize22">22</system:Double>
+    <system:Double x:Key="FontSize10">10</system:Double>
+    <system:Double x:Key="FontSize12">12</system:Double>
+    <system:Double x:Key="FontSize14">14</system:Double>
+    <system:Double x:Key="FontSize16">16</system:Double>
+
+</ResourceDictionary>
