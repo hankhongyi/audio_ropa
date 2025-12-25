@@ -11,7 +11,8 @@
     <Color x:Key="NormalGradientEndColor">#777777</Color>
     <Color x:Key="AccentColor">#FF6B35</Color>
     <Color x:Key="LightRedColor">#FF7253</Color>
-    
+    <Color x:Key="DarkBackgroundColor">#22252A</Color>
+
     <!-- Brushes -->
     <SolidColorBrush x:Key="PrimaryBlackBrush" Color="{StaticResource PrimaryBlackColor}"/>
     <SolidColorBrush x:Key="SecondaryBlackBrush" Color="{StaticResource SecondaryBlackColorColor}"/>
@@ -19,6 +20,7 @@
     <SolidColorBrush x:Key="WhiteTextBrush" Color="White"/>
     <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
     <SolidColorBrush x:Key="LightRedBrush" Color="{StaticResource LightRedColor}"/>
+    <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{StaticResource DarkBackgroundColor}"/>
     
     <LinearGradientBrush x:Key="SelectedGradient" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Color="{StaticResource SelectedGradientStartColor}" Offset="0"/>
@@ -48,5 +50,37 @@
     <system:Double x:Key="FontSize12">12</system:Double>
     <system:Double x:Key="FontSize14">14</system:Double>
     <system:Double x:Key="FontSize16">16</system:Double>
+
+    <!-- Rounded Square Button Style -->
+    <Style x:Key="RoundedSquareButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource WhiteTextBrush}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSize16}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="8">
+                        <ContentPresenter HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource LightRedBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource LightRedBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>
