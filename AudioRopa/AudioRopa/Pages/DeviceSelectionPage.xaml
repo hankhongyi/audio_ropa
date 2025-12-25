@@ -16,24 +16,34 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Padding="30">
-            <StackPanel Orientation="Horizontal" 
-                        HorizontalAlignment="Center" 
+            <StackPanel HorizontalAlignment="Center" 
                         VerticalAlignment="Center">
-                <!-- First Device Button -->
-                <Button Style="{StaticResource RoundedSquareButton}"
-                        Width="180"
-                        Height="160"
-                        Content="{x:Static properties:Resources.APTDeviceText}"
-                        Click="Device1Button_Click"
-                        Margin="10,10,20,0"/>
+                <!-- Title Text -->
+                <TextBlock Text="{x:Static properties:Resources.ChooseYourDevice}"
+                           FontSize="40"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,20"/>
                 
-                <!-- Second Device Button -->
-                <Button Style="{StaticResource RoundedSquareButton}"
-                        Width="180"
-                        Height="160"
-                        Content="{x:Static properties:Resources.APRDeviceText}"
-                        Click="Device2Button_Click"
-                        Margin="20,10,0,0"/>
+                <!-- Device Buttons Container -->
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center">
+                    <!-- First Device Button -->
+                    <Button Style="{StaticResource RoundedSquareButton}"
+                            Width="180"
+                            Height="160"
+                            Content="{x:Static properties:Resources.APTDeviceText}"
+                            Click="Device1Button_Click"
+                            Margin="10,0,20,0"/>
+                    
+                    <!-- Second Device Button -->
+                    <Button Style="{StaticResource RoundedSquareButton}"
+                            Width="180"
+                            Height="160"
+                            Content="{x:Static properties:Resources.APRDeviceText}"
+                            Click="Device2Button_Click"
+                            Margin="20,0,0,0"/>
+                </StackPanel>
             </StackPanel>
         </Border>
     </Grid>

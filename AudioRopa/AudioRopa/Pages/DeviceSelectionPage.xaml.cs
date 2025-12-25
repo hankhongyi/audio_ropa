@@ -28,13 +28,13 @@ namespace AudioRopa.Pages
         private void Device1Button_Click(object sender, RoutedEventArgs e)
         {
             // TODO: Navigate to Device 1 page
-            // Example: this.NavigationService.Navigate(new Uri("Pages/Device1Page.xaml", UriKind.Relative));
+            this.NavigationService.Navigate(new Uri("Pages/AptPage.xaml", UriKind.Relative));
         }
 
         private void Device2Button_Click(object sender, RoutedEventArgs e)
         {
             // TODO: Navigate to Device 2 page
-            // Example: this.NavigationService.Navigate(new Uri("Pages/Device2Page.xaml", UriKind.Relative));
+            this.NavigationService.Navigate(new Uri("Pages/AprPage.xaml", UriKind.Relative));
         }
     }
 }

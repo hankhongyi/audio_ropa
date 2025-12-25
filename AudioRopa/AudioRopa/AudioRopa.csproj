@@ -76,6 +76,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\AprPage.xaml.cs">
+      <DependentUpon>AprPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AptPage.xaml.cs">
+      <DependentUpon>AptPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\DeviceSelectionPage.xaml.cs">
       <DependentUpon>DeviceSelectionPage.xaml</DependentUpon>
     </Compile>
@@ -107,6 +113,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\AprPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AptPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\DeviceSelectionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
