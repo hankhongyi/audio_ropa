@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="AudioRopa.View.AptHeader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AudioRopa.View"
+             mc:Ignorable="d"
+             xmlns:properties="clr-namespace:AudioRopa.Properties"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="Transparent" Margin="0,10,10,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Section -->
+        <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Top">
+            <!-- Images Section -->
+            <StackPanel Orientation="Horizontal"
+                       Height="35"
+                       Margin="0,0,0,5"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top">
+
+                <!-- Device Name TextBox -->
+                <TextBlock x:Name="DeviceName" 
+                           TextWrapping="Wrap" 
+                           TextAlignment="Center" 
+                           Text="{x:Static properties:Resources.APTDeviceText}"
+                           Foreground="White"
+                           Margin="0,0,10,0"
+                           FontSize="{DynamicResource FontSize22}"
+                           FontWeight="Medium"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+                <!-- Battery Image (replaceable source) -->
+                <Image x:Name="BatteryImage"
+                       Source="/Images/battery_100.png"
+                       Height="15"
+                       Width="27"
+                       Margin="0,0,0,0"
+                       Stretch="Uniform"
+                       VerticalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Right Section - Settings Button -->
+        <Button x:Name="SettingsButton"
+                Grid.Row="0"
+                Grid.Column="1"
+                Width="36"
+                Height="36"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Padding="0"
+                BorderThickness="0"
+                Background="Transparent"
+                Cursor="Hand"
+                Click="SettingsButton_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButtonBorder" CornerRadius="8" ClipToBounds="True">
+                        <StackPanel Orientation="Vertical" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center">
+                            <!-- Settings Image -->
+                            <Image Source="{svgc:SvgImage Images/settings.svg}" Margin="0" />
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--<Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource NormalGradient}"/>
+                        </Trigger>-->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource SelectedGradient}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        
+    </Grid>
+</UserControl>

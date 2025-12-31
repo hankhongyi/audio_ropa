@@ -117,13 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AGC" xml:space="preserve">
+    <value>AGC (Automatic Gein Control):</value>
+  </data>
   <data name="APRDeviceText" xml:space="preserve">
     <value>APR-1</value>
   </data>
   <data name="APTDeviceText" xml:space="preserve">
     <value>APT-1</value>
   </data>
+  <data name="AuracastInformation" xml:space="preserve">
+    <value>Auracast Information</value>
+  </data>
+  <data name="ChannelName" xml:space="preserve">
+    <value>Channel Name:</value>
+  </data>
   <data name="ChooseYourDevice" xml:space="preserve">
     <value>Choose Your Device</value>
+  </data>
+  <data name="Connection" xml:space="preserve">
+    <value>Connection</value>
+  </data>
+  <data name="DeviceName" xml:space="preserve">
+    <value>Device Name:</value>
+  </data>
+  <data name="FirmwareVersion" xml:space="preserve">
+    <value>Firmware Version:</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overview:</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="TransmissionPower" xml:space="preserve">
+    <value>Transmission Power Setting:</value>
+  </data>
+  <data name="TransmissionQuality" xml:space="preserve">
+    <value>Transmission Quality:</value>
   </data>
 </root>

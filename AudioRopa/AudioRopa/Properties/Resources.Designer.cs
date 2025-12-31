@@ -19,7 +19,7 @@ namespace AudioRopa.Properties {
     // 類別透過 ResGen 或 Visual Studio 這類工具。
     // 若要加入或移除成員，請編輯您的 .ResX 檔，然後重新執行 ResGen
     // (利用 /str 選項)，或重建您的 VS 專案。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -61,6 +61,15 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 AGC (Automatic Gein Control): 的當地語系化字串。
+        /// </summary>
+        public static string AGC {
+            get {
+                return ResourceManager.GetString("AGC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 APR-1 的當地語系化字串。
         /// </summary>
         public static string APRDeviceText {
@@ -79,11 +88,92 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 Auracast Information 的當地語系化字串。
+        /// </summary>
+        public static string AuracastInformation {
+            get {
+                return ResourceManager.GetString("AuracastInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Channel Name: 的當地語系化字串。
+        /// </summary>
+        public static string ChannelName {
+            get {
+                return ResourceManager.GetString("ChannelName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 Choose Your Device 的當地語系化字串。
         /// </summary>
         public static string ChooseYourDevice {
             get {
                 return ResourceManager.GetString("ChooseYourDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Connection 的當地語系化字串。
+        /// </summary>
+        public static string Connection {
+            get {
+                return ResourceManager.GetString("Connection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Device Name: 的當地語系化字串。
+        /// </summary>
+        public static string DeviceName {
+            get {
+                return ResourceManager.GetString("DeviceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Firmware Version: 的當地語系化字串。
+        /// </summary>
+        public static string FirmwareVersion {
+            get {
+                return ResourceManager.GetString("FirmwareVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Overview: 的當地語系化字串。
+        /// </summary>
+        public static string Overview {
+            get {
+                return ResourceManager.GetString("Overview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Password: 的當地語系化字串。
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Transmission Power Setting: 的當地語系化字串。
+        /// </summary>
+        public static string TransmissionPower {
+            get {
+                return ResourceManager.GetString("TransmissionPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Transmission Quality: 的當地語系化字串。
+        /// </summary>
+        public static string TransmissionQuality {
+            get {
+                return ResourceManager.GetString("TransmissionQuality", resourceCulture);
             }
         }
     }
