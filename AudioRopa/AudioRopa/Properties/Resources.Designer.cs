@@ -151,6 +151,15 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 Generate a QR Code 的當地語系化字串。
+        /// </summary>
+        public static string GenerateQrCode {
+            get {
+                return ResourceManager.GetString("GenerateQrCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 Overview: 的當地語系化字串。
         /// </summary>
         public static string Overview {

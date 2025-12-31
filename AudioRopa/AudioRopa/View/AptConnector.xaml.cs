@@ -80,5 +80,11 @@ namespace AudioRopa.View
         {
             Debug.WriteLine("On Connect Button Clicked");
         }
+
+
+        private void OnQrCodeButtonClicked(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("On Generate QR Code Button Clicked");
+        }
     }
 }

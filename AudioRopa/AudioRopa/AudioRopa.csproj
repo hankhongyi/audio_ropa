@@ -100,6 +100,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Custom\CustomAccentButton.xaml.cs">
+      <DependentUpon>CustomAccentButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Custom\CustomRedButton.xaml.cs">
       <DependentUpon>CustomRedButton.xaml</DependentUpon>
     </Compile>
@@ -136,6 +139,10 @@
       <DependentUpon>AptSection3.xaml</DependentUpon>
     </Compile>
     <Compile Include="XamlDisplayEx.cs" />
+    <Page Include="Custom\CustomAccentButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Custom\CustomRedButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

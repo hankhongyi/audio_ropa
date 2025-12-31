@@ -29,6 +29,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
                 <TextBlock Grid.Row="0"
@@ -221,9 +222,16 @@
                                Style="{StaticResource ContentTextBlockStyle}"/>
 
                 <custom:CustomRedButton Grid.Row="16" x:Name="ConnectButton"
-                                        Height="60"
+                                        Height="50"
                                         Margin="0,25,0,0"
+                                        ButtonText="{x:Static properties:Resources.ConnectToApt}"
                                         Click="OnConnectButtonClicked"/>
+
+                <custom:CustomAccentButton Grid.Row="17" x:Name="QrCodeButton"
+                                        Height="50"
+                                        Margin="0,10,0,0"
+                                        ButtonText="{x:Static properties:Resources.GenerateQrCode}"
+                                        Click="OnQrCodeButtonClicked"/>
             </Grid>
         </Border>
     </Grid>

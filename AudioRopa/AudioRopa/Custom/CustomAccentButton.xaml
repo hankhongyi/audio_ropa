@@ -1,0 +1,55 @@
+<UserControl x:Class="AudioRopa.Custom.CustomAccentButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AudioRopa.Custom"
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="800">
+    <Button x:Name="MainButton"
+            Click="MainButton_Click"
+            BorderThickness="0"
+            Cursor="Hand"
+            Background="Transparent"
+            Height="{Binding Height, RelativeSource={RelativeSource AncestorType=UserControl}}"
+            Width="{Binding Width, RelativeSource={RelativeSource AncestorType=UserControl}}">
+        <Button.Template>
+            <ControlTemplate TargetType="Button">
+                <Grid>
+                    <!-- Rounded Border with AccentColor -->
+                    <Border x:Name="ButtonBorder"
+                            BorderBrush="{DynamicResource AccentBrush}"
+                            BorderThickness="2"
+                            CornerRadius="3"
+                            Background="Transparent"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+                        
+                        <!-- Text in the center with AccentColor -->
+                        <TextBlock x:Name="ButtonText"
+                                   Text="{Binding ButtonText, RelativeSource={RelativeSource AncestorType=UserControl}, FallbackValue='Button'}"
+                                   Foreground="{DynamicResource AccentBrush}"
+                                   FontSize="14"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Center"/>
+                    </Border>
+                </Grid>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter TargetName="ButtonText" Property="Foreground" Value="Gray"/>
+                        <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="Gray"/>
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource AccentBrush}"/>
+                        <Setter TargetName="ButtonText" Property="Foreground" Value="White"/>
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{DynamicResource LightRedBrush}"/>
+                        <Setter TargetName="ButtonText" Property="Foreground" Value="{DynamicResource LightRedBrush}"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Button.Template>
+    </Button>
+</UserControl>

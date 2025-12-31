@@ -147,6 +147,9 @@
   <data name="FirmwareVersion" xml:space="preserve">
     <value>Firmware Version:</value>
   </data>
+  <data name="GenerateQrCode" xml:space="preserve">
+    <value>Generate a QR Code</value>
+  </data>
   <data name="Overview" xml:space="preserve">
     <value>Overview:</value>
   </data>
