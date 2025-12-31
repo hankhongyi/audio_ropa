@@ -15,30 +15,35 @@
         <Button.Template>
             <ControlTemplate TargetType="Button">
                 <Grid>
-                    <!-- Background Image -->
-                    <Image Source="/Images/horizontal_selected.png"
-                           Stretch="Fill"
-                           HorizontalAlignment="Stretch"
-                           VerticalAlignment="Stretch"/>
-
-                    <!-- Text in the center -->
-                    <TextBlock x:Name="ButtonText"
-                               Text="{Binding ButtonText, RelativeSource={RelativeSource AncestorType=UserControl}, FallbackValue='Button'}"
-                               Foreground="White"
-                               FontSize="14"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               TextAlignment="Center"/>
+                    <!-- Rounded Border with AccentColor Background -->
+                    <Border x:Name="ButtonBorder"
+                            Background="{DynamicResource AccentBrush}"
+                            BorderThickness="0"
+                            CornerRadius="3"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+                        
+                        <!-- Text in the center -->
+                        <TextBlock x:Name="ButtonText"
+                                   Text="{Binding ButtonText, RelativeSource={RelativeSource AncestorType=UserControl}, FallbackValue='Button'}"
+                                   Foreground="White"
+                                   FontSize="14"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Center"/>
+                    </Border>
                 </Grid>
                 <ControlTemplate.Triggers>
                     <Trigger Property="IsEnabled" Value="False">
                         <Setter TargetName="ButtonText" Property="Foreground" Value="Gray"/>
+                        <Setter TargetName="ButtonBorder" Property="Background" Value="Gray"/>
                     </Trigger>
                     <Trigger Property="IsPressed" Value="True">
-                        <Setter TargetName="ButtonText" Property="Opacity" Value="0.7"/>
+                        <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource LightRedBrush}"/>
+                        <Setter TargetName="ButtonText" Property="Opacity" Value="0.9"/>
                     </Trigger>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter TargetName="ButtonText" Property="Opacity" Value="0.9"/>
+                        <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource LightRedBrush}"/>
                     </Trigger>
                 </ControlTemplate.Triggers>
             </ControlTemplate>

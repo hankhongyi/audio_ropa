@@ -62,11 +62,22 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
     <!-- Bold TextBlock Styles -->
-    <Style x:Key="ContentTextBlockStyle" TargetType="TextBlock">
+    <Style x:Key="BoldTextBlockStyle" TargetType="TextBlock">
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="{DynamicResource FontSize16}"/>
-        <Setter Property="FontWeight" Value="Black"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- Normal TextBlock Styles -->
+    <Style x:Key="NormalTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSize16}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Center"/>

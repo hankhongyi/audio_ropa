@@ -10,7 +10,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <local:AptHeader Grid.Row="0" Margin="20,0,20,0"/>
         <local:AptConnector Grid.Row="1" Margin="20,0,20,0"/>

@@ -88,11 +88,56 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 1. Please connect the APR-1 dedicated cable to the computer. 的當地語系化字串。
+        /// </summary>
+        public static string AptTransferSsentence1 {
+            get {
+                return ResourceManager.GetString("AptTransferSsentence1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 2.  Click the &quot;Transfer&quot; button below. 的當地語系化字串。
+        /// </summary>
+        public static string AptTransferSsentence2 {
+            get {
+                return ResourceManager.GetString("AptTransferSsentence2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 3. When the APR-1’s purple indicator flashes rapidly three times, it means the transfer is successful and the cable can be disconnected. 的當地語系化字串。
+        /// </summary>
+        public static string AptTransferSsentence3 {
+            get {
+                return ResourceManager.GetString("AptTransferSsentence3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 4. To transfer to another APR-1, please repeat the steps above. 的當地語系化字串。
+        /// </summary>
+        public static string AptTransferSsentence4 {
+            get {
+                return ResourceManager.GetString("AptTransferSsentence4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 Auracast Information 的當地語系化字串。
         /// </summary>
         public static string AuracastInformation {
             get {
                 return ResourceManager.GetString("AuracastInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Cancel 的當地語系化字串。
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
         
@@ -124,11 +169,11 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
-        ///   查詢類似 Connect to APT-1 的當地語系化字串。
+        ///   查詢類似 Connect to APR-1 的當地語系化字串。
         /// </summary>
-        public static string ConnectToApt {
+        public static string ConnectToApr {
             get {
-                return ResourceManager.GetString("ConnectToApt", resourceCulture);
+                return ResourceManager.GetString("ConnectToApr", resourceCulture);
             }
         }
         
@@ -174,6 +219,15 @@ namespace AudioRopa.Properties {
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Transfer 的當地語系化字串。
+        /// </summary>
+        public static string Transfer {
+            get {
+                return ResourceManager.GetString("Transfer", resourceCulture);
             }
         }
         

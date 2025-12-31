@@ -126,8 +126,23 @@
   <data name="APTDeviceText" xml:space="preserve">
     <value>APT-1</value>
   </data>
+  <data name="AptTransferSsentence1" xml:space="preserve">
+    <value>1. Please connect the APR-1 dedicated cable to the computer.</value>
+  </data>
+  <data name="AptTransferSsentence2" xml:space="preserve">
+    <value>2.  Click the "Transfer" button below.</value>
+  </data>
+  <data name="AptTransferSsentence3" xml:space="preserve">
+    <value>3. When the APR-1’s purple indicator flashes rapidly three times, it means the transfer is successful and the cable can be disconnected.</value>
+  </data>
+  <data name="AptTransferSsentence4" xml:space="preserve">
+    <value>4. To transfer to another APR-1, please repeat the steps above.</value>
+  </data>
   <data name="AuracastInformation" xml:space="preserve">
     <value>Auracast Information</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
   <data name="ChannelName" xml:space="preserve">
     <value>Channel Name:</value>
@@ -138,8 +153,8 @@
   <data name="Connection" xml:space="preserve">
     <value>Connection:</value>
   </data>
-  <data name="ConnectToApt" xml:space="preserve">
-    <value>Connect to APT-1</value>
+  <data name="ConnectToApr" xml:space="preserve">
+    <value>Connect to APR-1</value>
   </data>
   <data name="DeviceName" xml:space="preserve">
     <value>Device Name:</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password:</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>Transfer</value>
   </data>
   <data name="TransmissionPower" xml:space="preserve">
     <value>Transmission Power Setting:</value>

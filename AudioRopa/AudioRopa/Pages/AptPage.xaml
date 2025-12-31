@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AudioRopa.Pages"
       xmlns:view="clr-namespace:AudioRopa.View"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AptPage">
 
@@ -16,7 +16,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <view:AptSection1 Grid.Column="0" Margin="0,0,0,0" ClipToBounds="True"/>
-        <view:AptSection2 Grid.Column="1" Margin="0,0,0,0" ClipToBounds="True"/>
-        <view:AptSection3 Grid.Column="2" Margin="0,0,0,0" ClipToBounds="True"/>
+        <view:AptSection2 Grid.Column="1" Margin="0,0,0,0" ClipToBounds="True" Visibility="Collapsed"/>
+        <view:AptSection3 Grid.Column="2" Margin="0,0,0,0" ClipToBounds="True" Visibility="Collapsed"/>
     </Grid>
 </Page>

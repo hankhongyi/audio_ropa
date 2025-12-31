@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace AudioRopa.View
 {
-    /// <summary>
-    /// AptHeader.xaml 的互動邏輯
-    /// </summary>
     public partial class AptHeader : UserControl
     {
         public AptHeader()
