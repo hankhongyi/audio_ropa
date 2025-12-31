@@ -4,13 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AudioRopa.View"
+             xmlns:custom="clr-namespace:AudioRopa.Custom"
              xmlns:properties="clr-namespace:AudioRopa.Properties"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="800">
     <Grid>
         <Border CornerRadius="8" Margin="0,0,0,0" Background="{StaticResource DarkBackgroundBrush}">
-            <Grid Margin="10,20,0,20">
+            <Grid Margin="15,20,20,20">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -21,13 +33,197 @@
                 
                 <TextBlock Grid.Row="0"
                           Text="{x:Static properties:Resources.Overview}"
-                          TextWrapping="Wrap"
-                          Foreground="White"
-                          FontSize="{DynamicResource FontSize16}"
-                          FontWeight="Normal"
-                          FontStyle="Italic"
-                          HorizontalAlignment="Left"
-                          VerticalAlignment="Center"/>
+                          Style="{StaticResource InfoTextBlockStyle}"/>
+                
+                <!-- Device Name -->
+                <Grid Grid.Row="1" Margin="0,15,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Margin="0,0,10,0"
+                               Text="{x:Static properties:Resources.DeviceName}"
+                               Style="{StaticResource InfoTextBlockStyle}"/>
+                    <TextBlock Grid.Column="1"
+                               x:Name="DeviceName"
+                               Text="APT-1"
+                               Style="{StaticResource ContentTextBlockStyle}"/>
+                </Grid>
+
+                <!-- Firmware Version -->
+                <Grid Grid.Row="2" Margin="0,15,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Margin="0,0,10,0"
+                          Text="{x:Static properties:Resources.FirmwareVersion}"
+                          Style="{StaticResource InfoTextBlockStyle}"/>
+                    <TextBlock Grid.Column="1"
+                               x:Name="FirmwareVersion"
+                               Text="1.0.2"
+                               Style="{StaticResource ContentTextBlockStyle}"/>
+                </Grid>
+
+                <!--  Connection -->
+                <Grid Grid.Row="3" Margin="0,15,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Margin="0,0,10,0"
+                          Text="{x:Static properties:Resources.Connection}"
+                          Style="{StaticResource InfoTextBlockStyle}"/>
+                    <TextBlock Grid.Column="1"
+                               x:Name="ConnectionType"
+                               Text="USB-C"
+                               Style="{StaticResource ContentTextBlockStyle}"/>
+                </Grid>
+
+                <!-- Volume Slider -->
+                <Grid Grid.Row="4" Margin="0,30,50,30">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Margin="0,0,0,20"
+                               Text="{x:Static properties:Resources.Volume}"
+                               Style="{StaticResource InfoTextBlockStyle}"
+                               HorizontalAlignment="Center"/>
+
+                    <!-- Slider Container -->
+                    <Grid Grid.Row="1">
+                        <!-- Background Track (Black) -->
+                        <Rectangle x:Name="BackgroundTrack"
+                              Fill="Black"
+                              Height="6"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Center"
+                              RadiusX="3"
+                              RadiusY="3"/>
+
+                        <!-- Progress Track (White) -->
+                        <Rectangle x:Name="ProgressTrack"
+                              Fill="White"
+                              Height="6"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              RadiusX="3"
+                              RadiusY="3"
+                              Width="200"/>
+
+                        <!-- Progress Indicator Square -->
+                        <Border x:Name="ProgressIndicator"
+                            Width="27"
+                            Height="15"
+                            CornerRadius="3"
+                            Background="{StaticResource LightRedBrush}"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Margin="0,-18,0,0">
+                            <TextBlock x:Name="ProgressText"
+                                   Text="5"
+                                   Foreground="White"
+                                   FontSize="{DynamicResource FontSize10}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                        </Border>
+
+                        <!-- Slider (Transparent) -->
+                        <Slider x:Name="VolumeSlider"
+                            Minimum="0"
+                            Maximum="100"
+                            TickFrequency="1"
+                            IsSnapToTickEnabled="True"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Height="12"
+                            Background="Transparent"
+                            ValueChanged="VolumeSlider_ValueChanged"
+                            PreviewMouseUp="VolumeSlider_MouseUp"
+                            SizeChanged="VolumeSlider_SizeChanged">
+                            <Slider.Style>
+                                <Style TargetType="Slider">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Slider">
+                                                <Grid>
+                                                    <Track x:Name="PART_Track">
+                                                        <Track.DecreaseRepeatButton>
+                                                            <RepeatButton Style="{StaticResource SliderButtonStyle}" Command="Slider.DecreaseLarge"/>
+                                                        </Track.DecreaseRepeatButton>
+                                                        <Track.Thumb>
+                                                            <Thumb Style="{StaticResource SliderThumbStyle}" Width="12" Height="12"/>
+                                                        </Track.Thumb>
+                                                        <Track.IncreaseRepeatButton>
+                                                            <RepeatButton Style="{StaticResource SliderButtonStyle}" Command="Slider.IncreaseLarge"/>
+                                                        </Track.IncreaseRepeatButton>
+                                                    </Track>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Slider.Style>
+                        </Slider>
+                    </Grid>
+                </Grid>
+
+                <!-- Auracast Information Title -->
+                <TextBlock Grid.Row="5" Margin="0,15,0,0"
+                          Text="{x:Static properties:Resources.AuracastInformation}"
+                          Style="{StaticResource InfoTextBlockStyle}"/>
+
+                <!-- Channel Name -->
+                <TextBlock Grid.Row="6" Margin="0,15,0,0"
+                          Text="{x:Static properties:Resources.ChannelName}"
+                          Style="{StaticResource InfoTextBlockStyle}"/>
+                <TextBlock Grid.Row="7"
+                               x:Name="ChannelName"
+                               Text="Test Channel 1"
+                               Style="{StaticResource ContentTextBlockStyle}"/>
+
+                <!-- Password -->
+                <TextBlock Grid.Row="8" Margin="0,15,0,0"
+                          Text="{x:Static properties:Resources.Password}"
+                          Style="{StaticResource InfoTextBlockStyle}"/>
+                <TextBlock Grid.Row="9"
+                               x:Name="Password"
+                               Text="01921368#_*"
+                               Style="{StaticResource ContentTextBlockStyle}"/>
+
+                <!-- Transmission Quality -->
+                <TextBlock Grid.Row="10" Margin="0,15,0,0"
+                          Text="{x:Static properties:Resources.TransmissionQuality}"
+                          Style="{StaticResource InfoTextBlockStyle}"/>
+                <TextBlock Grid.Row="11"
+                               x:Name="TransmissionQuality"
+                               Text="16KHz, 16bit"
+                               Style="{StaticResource ContentTextBlockStyle}"/>
+
+                 <!-- AGC -->
+                <TextBlock Grid.Row="12" Margin="0,15,0,0"
+                          Text="{x:Static properties:Resources.AGC}"
+                          Style="{StaticResource InfoTextBlockStyle}"/>
+                <TextBlock Grid.Row="13"
+                               x:Name="AGC"
+                               Text="On"
+                               Style="{StaticResource ContentTextBlockStyle}"/>
+
+                <!-- Transmission Power -->
+                <TextBlock Grid.Row="14" Margin="0,15,0,0"
+                          Text="{x:Static properties:Resources.TransmissionPower}"
+                          Style="{StaticResource InfoTextBlockStyle}"/>
+                <TextBlock Grid.Row="15"
+                               x:Name="TransmissionPower"
+                               Text="20dBm"
+                               Style="{StaticResource ContentTextBlockStyle}"/>
+
+                <custom:CustomRedButton Grid.Row="16" x:Name="ConnectButton"
+                                        Height="60"
+                                        Margin="0,25,0,0"
+                                        Click="OnConnectButtonClicked"/>
             </Grid>
         </Border>
     </Grid>

@@ -115,11 +115,20 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
-        ///   查詢類似 Connection 的當地語系化字串。
+        ///   查詢類似 Connection: 的當地語系化字串。
         /// </summary>
         public static string Connection {
             get {
                 return ResourceManager.GetString("Connection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Connect to APT-1 的當地語系化字串。
+        /// </summary>
+        public static string ConnectToApt {
+            get {
+                return ResourceManager.GetString("ConnectToApt", resourceCulture);
             }
         }
         
@@ -174,6 +183,15 @@ namespace AudioRopa.Properties {
         public static string TransmissionQuality {
             get {
                 return ResourceManager.GetString("TransmissionQuality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Volume 的當地語系化字串。
+        /// </summary>
+        public static string Volume {
+            get {
+                return ResourceManager.GetString("Volume", resourceCulture);
             }
         }
     }

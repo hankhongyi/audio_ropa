@@ -136,7 +136,10 @@
     <value>Choose Your Device</value>
   </data>
   <data name="Connection" xml:space="preserve">
-    <value>Connection</value>
+    <value>Connection:</value>
+  </data>
+  <data name="ConnectToApt" xml:space="preserve">
+    <value>Connect to APT-1</value>
   </data>
   <data name="DeviceName" xml:space="preserve">
     <value>Device Name:</value>
@@ -155,5 +158,8 @@
   </data>
   <data name="TransmissionQuality" xml:space="preserve">
     <value>Transmission Quality:</value>
+  </data>
+  <data name="Volume" xml:space="preserve">
+    <value>Volume</value>
   </data>
 </root>

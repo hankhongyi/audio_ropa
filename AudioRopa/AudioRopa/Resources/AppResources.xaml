@@ -51,6 +51,27 @@
     <system:Double x:Key="FontSize14">14</system:Double>
     <system:Double x:Key="FontSize16">16</system:Double>
 
+    <!-- Italic TextBlock Styles -->
+    <Style x:Key="InfoTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSize16}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontStyle" Value="Italic"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <!-- Bold TextBlock Styles -->
+    <Style x:Key="ContentTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSize16}"/>
+        <Setter Property="FontWeight" Value="Black"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
     <!-- Rounded Square Button Style -->
     <Style x:Key="RoundedSquareButton" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
@@ -76,6 +97,41 @@
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Background" Value="{StaticResource LightRedBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SliderButtonStyle" TargetType="RepeatButton">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border Background="Transparent"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="SliderThumbStyle" TargetType="Thumb">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="Height" Value="16"/>
+        <Setter Property="Width" Value="16"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Thumb">
+                    <Ellipse Name="Ellipse" Fill="White" Stroke="White" StrokeThickness="1"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Ellipse" Property="Fill" Value="#FFDDDDDD"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Ellipse" Property="Fill" Value="#FF999999"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

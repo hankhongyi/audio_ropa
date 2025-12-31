@@ -100,6 +100,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Custom\CustomRedButton.xaml.cs">
+      <DependentUpon>CustomRedButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AprPage.xaml.cs">
       <DependentUpon>AprPage.xaml</DependentUpon>
     </Compile>
@@ -133,6 +136,10 @@
       <DependentUpon>AptSection3.xaml</DependentUpon>
     </Compile>
     <Compile Include="XamlDisplayEx.cs" />
+    <Page Include="Custom\CustomRedButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -257,6 +264,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\battery_75.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\horizontal_selected.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\long_button_bg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\settings.png">
