@@ -1,28 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
+using AudioRopa.Model;
+using System.Diagnostics;
 
 namespace AudioRopa.Pages
 {
-    /// <summary>
-    /// AptPage.xaml 的互動邏輯
-    /// </summary>
     public partial class AptPage : Page
     {
+        private readonly AptCommunicator AptCommunicator = AptCommunicator.Instance;
+        
         public AptPage()
         {
             InitializeComponent();
+            AptCommunicator.OnSettingClicked += OnSettingClicked;
+            AptCommunicator.OnConnectClicked += OnConnectClicked;
+            AptCommunicator.OnAptInfoSettingCancelled += OnAptInfoSettingCancelled;
+            AptCommunicator.OnAptTransferCancelled += OnAptTransferCancelled;
+        }
+
+        private void OnSettingClicked()
+        {
+            Debug.WriteLine("- OnSettingClicked -");
+            AptSettings.Visibility = System.Windows.Visibility.Visible;
+            AptSettings.AptTransfer.Visibility = System.Windows.Visibility.Collapsed;
+            AptSettings.AptInfoSetting.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void OnConnectClicked()
+        {
+            AptSettings.Visibility = System.Windows.Visibility.Visible;
+            AptSettings.AptTransfer.Visibility = System.Windows.Visibility.Visible;
+            AptSettings.AptInfoSetting.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void OnAptInfoSettingCancelled()
+        {
+            if (AptSettings.AptInfoSetting.Visibility == System.Windows.Visibility.Visible)
+            {
+                AptSettings.AptInfoSetting.Visibility = System.Windows.Visibility.Collapsed;
+                AptSettings.Visibility = System.Windows.Visibility.Collapsed;
+            }
+        }
+
+        private void OnAptTransferCancelled()
+        {
+            if (AptSettings.AptTransfer.Visibility == System.Windows.Visibility.Visible)
+            {
+                AptSettings.AptTransfer.Visibility = System.Windows.Visibility.Collapsed;
+                AptSettings.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
     }
 }

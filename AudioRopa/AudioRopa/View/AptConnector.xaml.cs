@@ -13,14 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using AudioRopa.Model;
 
 namespace AudioRopa.View
 {
     public partial class AptConnector : UserControl
     {
+        private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
+        
         public AptConnector()
         {
             InitializeComponent();
+            aptCommunicator.OnSettingClicked += HandleSettingClicked;
+            aptCommunicator.OnGenerateQrCodeClicked += HandleGenerateQrCode;
+            aptCommunicator.OnUpdateClicked += HandleUpdateClicked;
         }
 
         private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -76,15 +82,55 @@ namespace AudioRopa.View
             }
         }
 
+        private AuracastInfo GetAuracastInfo()
+        {
+            AuracastInfo auracastInfo = new AuracastInfo();
+            auracastInfo.ChannelName = ChannelName.Text;
+            auracastInfo.Password = Password.Text;
+            auracastInfo.Quality = TransmissionQuality.Text;
+            auracastInfo.Agc = false;
+            if (AGC.Text == "On")
+            {
+                auracastInfo.Agc = true;
+            }
+            string txPowerText = TxPower.Text;
+            string txPowerString = txPowerText.Replace("dBm", "").Trim();
+            auracastInfo.TxPower = int.Parse(txPowerString);
+            return auracastInfo;
+        }
+
         private void OnConnectButtonClicked(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("On Connect Button Clicked");
+            aptCommunicator.InvokeConnect();
         }
 
 
         private void OnQrCodeButtonClicked(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("On Generate QR Code Button Clicked");
+        }
+
+        private void HadnleConnectClicked()
+        {
+            Debug.WriteLine("Connect clicked event received in AptConnector");
+            // Add your logic here
+        }
+
+        private void HandleGenerateQrCode()
+        {
+            Debug.WriteLine("Generate QR Code clicked event received in AptConnector");
+        }
+
+        private void HandleUpdateClicked()
+        {
+            Debug.WriteLine("OnUpdate clicked");
+        }
+
+        private void HandleSettingClicked()
+        {
+            AuracastInfo auracastInfo = GetAuracastInfo();
+            aptCommunicator.InvokeAuracastInfoRead(auracastInfo);
         }
     }
 }

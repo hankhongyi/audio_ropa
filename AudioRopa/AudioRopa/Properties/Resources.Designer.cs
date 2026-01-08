@@ -61,11 +61,38 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 0dBm 的當地語系化字串。
+        /// </summary>
+        public static string _0dBm {
+            get {
+                return ResourceManager.GetString("0dBm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 20dBm 的當地語系化字串。
+        /// </summary>
+        public static string _20dBm {
+            get {
+                return ResourceManager.GetString("20dBm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 AGC (Automatic Gein Control): 的當地語系化字串。
         /// </summary>
         public static string AGC {
             get {
                 return ResourceManager.GetString("AGC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 AGC (Automatic Gein Control) 的當地語系化字串。
+        /// </summary>
+        public static string AGCTitle {
+            get {
+                return ResourceManager.GetString("AGCTitle", resourceCulture);
             }
         }
         
@@ -124,11 +151,29 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 Auracast Channel Name 的當地語系化字串。
+        /// </summary>
+        public static string AuracastChannelName {
+            get {
+                return ResourceManager.GetString("AuracastChannelName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 Auracast Information 的當地語系化字串。
         /// </summary>
         public static string AuracastInformation {
             get {
                 return ResourceManager.GetString("AuracastInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Auracast Information Setting 的當地語系化字串。
+        /// </summary>
+        public static string AuracastInfoSetting {
+            get {
+                return ResourceManager.GetString("AuracastInfoSetting", resourceCulture);
             }
         }
         
@@ -223,6 +268,24 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 Password 的當地語系化字串。
+        /// </summary>
+        public static string PasswordTitle {
+            get {
+                return ResourceManager.GetString("PasswordTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似  的當地語系化字串。
+        /// </summary>
+        public static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 Transfer 的當地語系化字串。
         /// </summary>
         public static string Transfer {
@@ -246,6 +309,33 @@ namespace AudioRopa.Properties {
         public static string TransmissionQuality {
             get {
                 return ResourceManager.GetString("TransmissionQuality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Transmission Quality 的當地語系化字串。
+        /// </summary>
+        public static string TransmissionQualityTitle {
+            get {
+                return ResourceManager.GetString("TransmissionQualityTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 TX Power 的當地語系化字串。
+        /// </summary>
+        public static string TXPower {
+            get {
+                return ResourceManager.GetString("TXPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Update 的當地語系化字串。
+        /// </summary>
+        public static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
             }
         }
         

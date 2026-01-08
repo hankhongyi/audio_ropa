@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="AudioRopa.Custom.SwitchButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AudioRopa.Custom"
+             mc:Ignorable="d" 
+             d:DesignHeight="24" d:DesignWidth="54">
+    <Grid>
+        <!-- Background Border -->
+        <Border x:Name="BackgroundBorder"
+                Width="54"
+                Height="24"
+                CornerRadius="12"
+                Cursor="Hand"
+                MouseLeftButtonDown="SwitchButton_Click">
+            <Border.Background>
+                <ImageBrush ImageSource="pack://application:,,,/Images/switch_off_bg.png"/>
+            </Border.Background>
+        </Border>
+
+        <!-- Content Grid for Text and Circle -->
+        <Grid MouseLeftButtonDown="SwitchButton_Click" Cursor="Hand">
+            <!-- Off State Text (shows on right when circle is on left) -->
+            <TextBlock x:Name="OffText"
+                       Text="off"
+                       Foreground="White"
+                       FontSize="{DynamicResource FontSize14}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Margin="30,0,7,0"
+                       Visibility="Visible"/>
+
+            <!-- On State Text (shows on left when circle is on right) -->
+            <TextBlock x:Name="OnText"
+                       Text="on"
+                       Foreground="White"
+                       FontSize="{DynamicResource FontSize14}"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="7,0,30,0"
+                       Visibility="Visible"/>
+
+            <!-- Circle Container for Animation -->
+            <Canvas Width="54" Height="24" MouseLeftButtonDown="SwitchButton_Click">
+                <Ellipse x:Name="SwitchCircle"
+                         Width="24"
+                         Height="24"
+                         Fill="White"
+                         Canvas.Left="0"
+                         Canvas.Top="0">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="CircleTransform" X="0"/>
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+            </Canvas>
+        </Grid>
+    </Grid>
+</UserControl>

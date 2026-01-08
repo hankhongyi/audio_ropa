@@ -46,6 +46,7 @@
     <system:Double x:Key="LargeFontSize">16</system:Double>-->
     <system:Double x:Key="FontSize18">18</system:Double>
     <system:Double x:Key="FontSize22">22</system:Double>
+    <system:Double x:Key="FontSize8">8</system:Double>
     <system:Double x:Key="FontSize10">10</system:Double>
     <system:Double x:Key="FontSize12">12</system:Double>
     <system:Double x:Key="FontSize14">14</system:Double>
@@ -81,6 +82,40 @@
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- Small Normal TextBlock Styles -->
+    <Style x:Key="SmallNormalTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSize8}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- Title Italic TextBlock Styles -->
+    <Style x:Key="TitleItalicTextStyle" TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSize22}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontStyle" Value="Italic"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- Gray TextBox Style -->
+    <Style x:Key="GrayTextBoxStyle" TargetType="TextBox">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Background" Value="#D9D9D9"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSize16}"/>
+        <Setter Property="Padding" Value="10,8"/>
+        <Setter Property="BorderBrush" Value="#CCCCCC"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
 
     <!-- Rounded Square Button Style -->

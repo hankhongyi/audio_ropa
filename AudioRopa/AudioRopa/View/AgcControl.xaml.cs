@@ -12,28 +12,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Diagnostics;
 using AudioRopa.Model;
 
 namespace AudioRopa.View
 {
-    public partial class AptTransfer : UserControl
+    public partial class AgcControl : UserControl
     {
         private readonly AptCommunicator AptCommunicator = AptCommunicator.Instance;
-        public AptTransfer()
+        public AgcControl()
         {
             InitializeComponent();
         }
 
-        private void OnTransferClicked(object sender, RoutedEventArgs e)
+        private void AGCSwitchButton_StateChanged(object sender, bool isOn)
         {
-            Debug.WriteLine("On Transfer Button Clicked");
+            // Handle the switch state change
+            AptCommunicator.InvokeAgcOnOff(isOn);
         }
 
-        private void OnCancelClicked(object sender, RoutedEventArgs e)
+        private void AutoGainInfo_Click(object sender, MouseButtonEventArgs e)
         {
-            Debug.WriteLine("On Cancel Button Clicked");
-            AptCommunicator.InvokeAptTransferCancelled();
+            // Handle the info icon click
+            // For example, show information about the Auto Gain feature
         }
     }
 }

@@ -106,6 +106,11 @@
     <Compile Include="Custom\CustomRedButton.xaml.cs">
       <DependentUpon>CustomRedButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Custom\SwitchButton.xaml.cs">
+      <DependentUpon>SwitchButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AptCommunicator.cs" />
+    <Compile Include="Model\AuracastInfo.cs" />
     <Compile Include="Pages\AprPage.xaml.cs">
       <DependentUpon>AprPage.xaml</DependentUpon>
     </Compile>
@@ -123,11 +128,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="View\AgcControl.xaml.cs">
+      <DependentUpon>AgcControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AptConnector.xaml.cs">
       <DependentUpon>AptConnector.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AptHeader.xaml.cs">
       <DependentUpon>AptHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AptInfoSetting.xaml.cs">
+      <DependentUpon>AptInfoSetting.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AptSection1.xaml.cs">
       <DependentUpon>AptSection1.xaml</DependentUpon>
@@ -147,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Custom\CustomRedButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Custom\SwitchButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,11 +204,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\AgcControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AptConnector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AptHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AptInfoSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -283,13 +306,25 @@
     <Content Include="Images\horizontal_selected.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\info.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\long_button_bg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\panel_bg_small.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\settings.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\settings.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\switch_off_bg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\switch_on_bg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

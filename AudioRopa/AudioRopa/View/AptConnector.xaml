@@ -217,7 +217,7 @@
                           Text="{x:Static properties:Resources.TransmissionPower}"
                           Style="{StaticResource InfoTextBlockStyle}"/>
                 <TextBlock Grid.Row="15"
-                               x:Name="TransmissionPower"
+                               x:Name="TxPower"
                                Text="20dBm"
                                Style="{StaticResource BoldTextBlockStyle}"/>
 

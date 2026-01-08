@@ -12,11 +12,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using AudioRopa.Model;
 namespace AudioRopa.View
 {
     public partial class AptHeader : UserControl
     {
+        private readonly AptCommunicator AptCommunicator = AptCommunicator.Instance;
+
         public AptHeader()
         {
             InitializeComponent();
@@ -24,12 +26,7 @@ namespace AudioRopa.View
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            // Find the parent page's NavigationService to navigate to SettingsPage
-            var page = FindParent<Page>(this);
-            if (page?.NavigationService != null)
-            {
-                //page.NavigationService.Navigate(new SettingsPage());
-            }
+            AptCommunicator.InvokeSetting();
         }
 
         // Helper method to find parent of specific type
