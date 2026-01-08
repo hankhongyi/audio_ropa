@@ -156,6 +156,9 @@
   <data name="AuracastInfoSetting" xml:space="preserve">
     <value>Auracast Information Setting</value>
   </data>
+  <data name="AuracastPriority" xml:space="preserve">
+    <value>Auracast Priority Setting</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -197,6 +200,15 @@
   </data>
   <data name="PasswordTitle" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="PasteData" xml:space="preserve">
+    <value>Paste the saved data</value>
+  </data>
+  <data name="ReturnToHomepage" xml:space="preserve">
+    <value>Return to homepage</value>
+  </data>
+  <data name="SaveData" xml:space="preserve">
+    <value>Save the data</value>
   </data>
   <data name="Transfer" xml:space="preserve">
     <value>Transfer</value>

@@ -30,6 +30,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
                 <TextBlock Grid.Row="0"
@@ -232,6 +233,15 @@
                                         Margin="0,25,0,0"
                                         ButtonText="{x:Static properties:Resources.GenerateQrCode}"
                                         Click="OnQrCodeButtonClicked"/>
+
+
+                <custom:CustomAccentButton Grid.Row="18" x:Name="ReturnHomeButton"
+                                        Height="45"
+                                        Margin="0,25,0,0"
+                                        ButtonText="{x:Static properties:Resources.ReturnToHomepage}"
+                                        Click="OnReturnHomeButtonClicked"/>
+
+
             </Grid>
         </Border>
     </Grid>

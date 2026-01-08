@@ -19,6 +19,8 @@ namespace AudioRopa.Model
         public event Action OnAptTransferCancelled;
         public event Action<bool> OnAgcOnOffChanged;
         public event Action<AuracastInfo> OnAuracastInfoRead;
+        public event Action OnAprSettingTransferClicked;
+        public event Action OnReturnHomeClicked;
 
         private AptCommunicator()
         {
@@ -62,6 +64,16 @@ namespace AudioRopa.Model
         public void InvokeAuracastInfoRead(AuracastInfo auracast)
         {
             OnAuracastInfoRead.Invoke(auracast);
+        }
+
+        public void InvokeAprSettingTransfer()
+        {
+            OnAprSettingTransferClicked.Invoke();
+        }
+
+        public void InvokeReturnHoome()
+        {
+            OnReturnHomeClicked.Invoke();
         }
     }
 }

@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace AudioRopa.Pages
 {
-    /// <summary>
-    /// DeviceSelectionPage.xaml 的互動邏輯
-    /// </summary>
     public partial class DeviceSelectionPage : Page
     {
         public DeviceSelectionPage()
@@ -27,13 +24,11 @@ namespace AudioRopa.Pages
 
         private void Device1Button_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Navigate to Device 1 page
             this.NavigationService.Navigate(new Uri("Pages/AptPage.xaml", UriKind.Relative));
         }
 
         private void Device2Button_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Navigate to Device 2 page
             this.NavigationService.Navigate(new Uri("Pages/AprPage.xaml", UriKind.Relative));
         }
     }

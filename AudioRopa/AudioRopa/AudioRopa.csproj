@@ -103,6 +103,9 @@
     <Compile Include="Custom\CustomAccentButton.xaml.cs">
       <DependentUpon>CustomAccentButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Custom\CustomButton.xaml.cs">
+      <DependentUpon>CustomButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Custom\CustomRedButton.xaml.cs">
       <DependentUpon>CustomRedButton.xaml</DependentUpon>
     </Compile>
@@ -131,6 +134,18 @@
     <Compile Include="View\AgcControl.xaml.cs">
       <DependentUpon>AgcControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AprHeader.xaml.cs">
+      <DependentUpon>AprHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AprSection1.xaml.cs">
+      <DependentUpon>AprSection1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AprSection2.xaml.cs">
+      <DependentUpon>AprSection2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AprSetting.xaml.cs">
+      <DependentUpon>AprSetting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AptConnector.xaml.cs">
       <DependentUpon>AptConnector.xaml</DependentUpon>
     </Compile>
@@ -154,6 +169,10 @@
     </Compile>
     <Compile Include="XamlDisplayEx.cs" />
     <Page Include="Custom\CustomAccentButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Custom\CustomButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,6 +224,22 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AgcControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AprHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AprSection1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AprSection2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AprSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

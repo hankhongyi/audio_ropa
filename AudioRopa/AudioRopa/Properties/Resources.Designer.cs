@@ -178,6 +178,15 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 Auracast Priority Setting 的當地語系化字串。
+        /// </summary>
+        public static string AuracastPriority {
+            get {
+                return ResourceManager.GetString("AuracastPriority", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 Cancel 的當地語系化字串。
         /// </summary>
         public static string Cancel {
@@ -300,6 +309,33 @@ namespace AudioRopa.Properties {
         public static string PasswordTitle {
             get {
                 return ResourceManager.GetString("PasswordTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Paste the saved data 的當地語系化字串。
+        /// </summary>
+        public static string PasteData {
+            get {
+                return ResourceManager.GetString("PasteData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Return to homepage 的當地語系化字串。
+        /// </summary>
+        public static string ReturnToHomepage {
+            get {
+                return ResourceManager.GetString("ReturnToHomepage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Save the data 的當地語系化字串。
+        /// </summary>
+        public static string SaveData {
+            get {
+                return ResourceManager.GetString("SaveData", resourceCulture);
             }
         }
         

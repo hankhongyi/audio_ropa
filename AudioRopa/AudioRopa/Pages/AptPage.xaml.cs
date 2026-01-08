@@ -6,15 +6,15 @@ namespace AudioRopa.Pages
 {
     public partial class AptPage : Page
     {
-        private readonly AptCommunicator AptCommunicator = AptCommunicator.Instance;
+        private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
         
         public AptPage()
         {
             InitializeComponent();
-            AptCommunicator.OnSettingClicked += OnSettingClicked;
-            AptCommunicator.OnConnectClicked += OnConnectClicked;
-            AptCommunicator.OnAptInfoSettingCancelled += OnAptInfoSettingCancelled;
-            AptCommunicator.OnAptTransferCancelled += OnAptTransferCancelled;
+            aptCommunicator.OnSettingClicked += OnSettingClicked;
+            aptCommunicator.OnConnectClicked += OnConnectClicked;
+            aptCommunicator.OnAptInfoSettingCancelled += OnAptInfoSettingCancelled;
+            aptCommunicator.OnAptTransferCancelled += OnAptTransferCancelled;
         }
 
         private void OnSettingClicked()

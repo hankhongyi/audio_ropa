@@ -12,28 +12,34 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Diagnostics;
 using AudioRopa.Model;
 
 namespace AudioRopa.View
 {
-    public partial class AptTransfer : UserControl
+    public partial class AprSetting : UserControl
     {
         private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
-        public AptTransfer()
+        public AprSetting()
         {
             InitializeComponent();
         }
 
-        private void OnTransferClicked(object sender, RoutedEventArgs e)
+        private void OnSaveDataClick(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("On Transfer Button Clicked");
         }
 
-        private void OnCancelClicked(object sender, RoutedEventArgs e)
+        private void OnPasteDataClick(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("On Cancel Button Clicked");
-            aptCommunicator.InvokeAptTransferCancelled();
+        }
+
+        private void OnTransferClicked(object sender, RoutedEventArgs e)
+        {
+            aptCommunicator.InvokeAprSettingTransfer();
+        }
+
+        private void OnReturnHomeClicked(object sender, RoutedEventArgs e)
+        {
+            aptCommunicator.InvokeReturnHoome();
         }
     }
 }

@@ -105,10 +105,14 @@ namespace AudioRopa.View
             aptCommunicator.InvokeConnect();
         }
 
-
         private void OnQrCodeButtonClicked(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("On Generate QR Code Button Clicked");
+        }
+
+        private void OnReturnHomeButtonClicked(object sender, RoutedEventArgs e)
+        {
+            aptCommunicator.InvokeReturnHoome();
         }
 
         private void HadnleConnectClicked()

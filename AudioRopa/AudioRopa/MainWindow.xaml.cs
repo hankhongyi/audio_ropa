@@ -12,17 +12,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AudioRopa.Model;
+using AudioRopa.Pages;
 
 namespace AudioRopa
 {
-    /// <summary>
-    /// MainWindow.xaml 的互動邏輯
-    /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
         public MainWindow()
         {
             InitializeComponent();
+            aptCommunicator.OnReturnHomeClicked += HandleReturnHome;
+        }
+
+        private void HandleReturnHome()
+        {
+            // Navigate to DeviceSelectionPage
+            MainFrame.Navigate(new DeviceSelectionPage());
+            
+            // Clear the back stack
+            while (MainFrame.CanGoBack)
+            {
+                MainFrame.RemoveBackEntry();
+            }
         }
     }
 }

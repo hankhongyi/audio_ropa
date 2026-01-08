@@ -12,17 +12,34 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AudioRopa.Model;
 
 namespace AudioRopa.Pages
 {
-    /// <summary>
-    /// AprPage.xaml 的互動邏輯
-    /// </summary>
     public partial class AprPage : Page
     {
+        private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
         public AprPage()
         {
             InitializeComponent();
+            aptCommunicator.OnAprSettingTransferClicked += HandleTransferClciked;
+            aptCommunicator.OnAptTransferCancelled += OnTransferCancelled;
+        }
+        
+        private void HandleTransferClciked()
+        {
+            if (AprSection2.Visibility == Visibility.Collapsed)
+            {
+                AprSection2.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void OnTransferCancelled()
+        {
+            if (AprSection2.Visibility == Visibility.Visible)
+            {
+                AprSection2.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
