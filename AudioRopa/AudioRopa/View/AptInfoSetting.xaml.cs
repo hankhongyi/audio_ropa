@@ -26,6 +26,11 @@ namespace AudioRopa.View
             InitializeComponent();
             aptCommunicator.OnAgcOnOffChanged += HandleAgcOnOff;
             aptCommunicator.OnAuracastInfoRead += HandleAuracasstInfoRead;
+            
+            // Setup transmission quality input formatting
+            AuracastTransmissionQualityInput.PreviewTextInput += TransmissionQuality_PreviewTextInput;
+            AuracastTransmissionQualityInput.GotFocus += TransmissionQuality_GotFocus;
+            AuracastTransmissionQualityInput.LostFocus += TransmissionQuality_LostFocus;
         }
 
         private void AGCSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -45,7 +50,7 @@ namespace AudioRopa.View
 
         private void UpdateAGCProgressIndicator()
         {
-            if (AGCSlider == null || ProgressTrack2 == null)
+            if (AGCSlider == null || ProgressTrack == null)
                 return;
 
             try
@@ -56,7 +61,18 @@ namespace AudioRopa.View
                 double progressWidth = sliderWidth * progressRatio;
 
                 // Update progress track width
-                ProgressTrack2.Width = progressWidth;
+                ProgressTrack.Width = progressWidth;
+
+                // Update progress indicator position
+                double indicatorPosition = progressWidth - (ProgressIndicator.Width / 2);
+                if (indicatorPosition < 0) indicatorPosition = 0;
+                if (indicatorPosition > sliderWidth - ProgressIndicator.Width)
+                    indicatorPosition = sliderWidth - ProgressIndicator.Width;
+
+                ProgressIndicator.Margin = new Thickness(indicatorPosition, -18, 0, 0);
+
+                // Update progress text
+                ProgressText.Text = ((int)AGCSlider.Value).ToString();
             }
             catch (Exception ex)
             {
@@ -73,7 +89,8 @@ namespace AudioRopa.View
 
         private void OnUpdagteClicked(object sender, RoutedEventArgs e)
         {
-            aptCommunicator.InvokeUpdate();
+            AuracastInfo auracast = ComposeAuracastInfo();
+            aptCommunicator.InvokeAuracastInfoUpdate(auracast);
         }
 
         private void OnCancelClicked(object sender, RoutedEventArgs e)
@@ -89,5 +106,53 @@ namespace AudioRopa.View
             AGCControl.AgcSwitch.IsOn = auracastInfo.Agc;
             AGCSlider.Value = auracastInfo.TxPower;
         }
+
+        private void TransmissionQuality_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            // Only allow digits and comma
+            e.Handled = !e.Text.All(c => char.IsDigit(c) || c == ',');
+        }
+
+        private void TransmissionQuality_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is TextBox textBox && !string.IsNullOrEmpty(textBox.Text))
+            {
+                // Extract only the numbers when focused for editing
+                string numbersOnly = new string(textBox.Text.Where(c => char.IsDigit(c) || c == ',').ToArray());
+                textBox.Text = numbersOnly;
+                textBox.SelectAll();
+            }
+        }
+
+        private void TransmissionQuality_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is TextBox textBox && !string.IsNullOrEmpty(textBox.Text))
+            {
+                string numbersOnly = new string(textBox.Text.Where(char.IsDigit).ToArray());
+                
+                if (numbersOnly.Length >= 2)
+                {
+                    // Split the numbers into two parts
+                    int midPoint = numbersOnly.Length / 2;
+                    string firstNumber = numbersOnly.Substring(0, midPoint);
+                    string secondNumber = numbersOnly.Substring(midPoint);
+                    
+                    // Format as "XX,KHz, YY,bit"
+                    textBox.Text = $"{firstNumber}KHz, {secondNumber}bit";
+                }
+            }
+        }
+
+        private AuracastInfo ComposeAuracastInfo()
+        {
+            AuracastInfo auracast = new AuracastInfo();
+            auracast.ChannelName = AuracastChannelNameInput.Text;
+            auracast.Password = AuracastPasswordInput.Text;
+            auracast.Quality = AuracastTransmissionQualityInput.Text;
+            auracast.Agc = AGCControl.AgcSwitch.IsOn;
+            auracast.TxPower = (int)AGCSlider.Value;
+            return auracast;
+        }
     }
 }
+

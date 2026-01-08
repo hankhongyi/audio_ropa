@@ -26,7 +26,7 @@ namespace AudioRopa.View
             InitializeComponent();
             aptCommunicator.OnSettingClicked += HandleSettingClicked;
             aptCommunicator.OnGenerateQrCodeClicked += HandleGenerateQrCode;
-            aptCommunicator.OnUpdateClicked += HandleUpdateClicked;
+            aptCommunicator.OnAuracastInfoUpdated += HandleAuracastInfoUpdated;
         }
 
         private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -122,9 +122,21 @@ namespace AudioRopa.View
             Debug.WriteLine("Generate QR Code clicked event received in AptConnector");
         }
 
-        private void HandleUpdateClicked()
+        private void HandleAuracastInfoUpdated(AuracastInfo auracast)
         {
-            Debug.WriteLine("OnUpdate clicked");
+            Debug.WriteLine("auracast.channelName:" + auracast.ChannelName);
+            ChannelName.Text = auracast.ChannelName;
+            Password.Text = auracast.Password;
+            TransmissionQuality.Text = auracast.Quality;
+            if(auracast.Agc)
+            {
+                AGC.Text = Properties.Resources.On;
+            }
+            else
+            {
+                AGC.Text = Properties.Resources.Off;
+            }
+            TxPower.Text = auracast.TxPower + Properties.Resources.dBm;
         }
 
         private void HandleSettingClicked()

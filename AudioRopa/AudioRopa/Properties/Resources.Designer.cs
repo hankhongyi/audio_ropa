@@ -223,6 +223,15 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 dBm 的當地語系化字串。
+        /// </summary>
+        public static string dBm {
+            get {
+                return ResourceManager.GetString("dBm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 Device Name: 的當地語系化字串。
         /// </summary>
         public static string DeviceName {
@@ -250,6 +259,24 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 Off 的當地語系化字串。
+        /// </summary>
+        public static string Off {
+            get {
+                return ResourceManager.GetString("Off", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 On 的當地語系化字串。
+        /// </summary>
+        public static string On {
+            get {
+                return ResourceManager.GetString("On", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 Overview: 的當地語系化字串。
         /// </summary>
         public static string Overview {
@@ -273,15 +300,6 @@ namespace AudioRopa.Properties {
         public static string PasswordTitle {
             get {
                 return ResourceManager.GetString("PasswordTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查詢類似  的當地語系化字串。
-        /// </summary>
-        public static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

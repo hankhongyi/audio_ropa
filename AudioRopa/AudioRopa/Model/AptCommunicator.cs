@@ -13,7 +13,7 @@ namespace AudioRopa.Model
 
         public event Action OnConnectClicked;
         public event Action OnGenerateQrCodeClicked;
-        public event Action OnUpdateClicked;
+        public event Action<AuracastInfo> OnAuracastInfoUpdated;
         public event Action OnSettingClicked;
         public event Action OnAptInfoSettingCancelled;
         public event Action OnAptTransferCancelled;
@@ -34,9 +34,9 @@ namespace AudioRopa.Model
             OnGenerateQrCodeClicked.Invoke();
         }
 
-        public void InvokeUpdate()
+        public void InvokeAuracastInfoUpdate(AuracastInfo auracast)
         {
-            OnUpdateClicked.Invoke();
+            OnAuracastInfoUpdated.Invoke(auracast);
         }
 
         public void InvokeSetting()

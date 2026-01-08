@@ -209,8 +209,8 @@
                           Style="{StaticResource InfoTextBlockStyle}"/>
                 <TextBlock Grid.Row="13"
                                x:Name="AGC"
-                               Text="On"
-                               Style="{StaticResource BoldTextBlockStyle}"/>
+                               Text="{x:Static properties:Resources.On}"
+                               Style="{StaticResource BoldTextBlockStyle}" Margin="0,0,0,0.8" VerticalAlignment="Bottom"/>
 
                 <!-- Transmission Power -->
                 <TextBlock Grid.Row="14" Margin="0,15,0,0"
