@@ -56,6 +56,10 @@ namespace AudioRopa.Pages
                 Debug.WriteLine("information is OK");
                 aprOperator.write(aprInformation);
             }
+            else
+            {
+                Debug.WriteLine("input info contains empty string");
+            }
         }
     }
 }
