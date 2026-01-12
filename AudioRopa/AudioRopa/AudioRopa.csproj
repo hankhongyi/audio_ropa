@@ -169,9 +169,6 @@
     <Compile Include="View\AptSection3.xaml.cs">
       <DependentUpon>AptSection3.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\AptTransfer.xaml.cs">
-      <DependentUpon>AptTransfer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="XamlDisplayEx.cs" />
     <Page Include="Custom\CustomAccentButton.xaml">
       <SubType>Designer</SubType>
@@ -273,10 +270,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AptSection3.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\AptTransfer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

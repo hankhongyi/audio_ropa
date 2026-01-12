@@ -21,21 +21,17 @@ namespace AudioRopa.Pages
     public partial class AprPage : Page
     {
         private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
-        private AprInfo aprInformation = new AprInfo();
-        private AprOperator aprOperator = new AprOperator();
         public AprPage()
         {
             InitializeComponent();
-            aptCommunicator.OnAprSettingTransferClicked += HandleSettingTransferClciked;
-            aptCommunicator.OnAprTransferCancelled += OnTransferCancelled;
-            aptCommunicator.OnAprTransferClicked += OnTransferClicked;
+            Loaded += OnLoaded;
+            Unloaded += OnUnloaded;
         }
         
         private void HandleSettingTransferClciked(AprInfo aprInfo)
         {
             if (AprSection2.Visibility == Visibility.Collapsed)
             {
-                aprInformation = aprInfo;
                 AprSection2.Visibility = Visibility.Visible;
             }
         }
@@ -48,18 +44,17 @@ namespace AudioRopa.Pages
             }
         }
 
-        private void OnTransferClicked()
+
+        private void OnLoaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            Debug.WriteLine("aprInformation:" + aprInformation);
-            if (aprInformation.ChannelName != string.Empty && aprInformation.Password != string.Empty)
-            {
-                Debug.WriteLine("information is OK");
-                aprOperator.write(aprInformation);
-            }
-            else
-            {
-                Debug.WriteLine("input info contains empty string");
-            }
+            aptCommunicator.OnAprSettingTransferClicked += HandleSettingTransferClciked;
+            aptCommunicator.OnAprTransferCancelled += OnTransferCancelled;
+        }
+
+        private void OnUnloaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            aptCommunicator.OnAprSettingTransferClicked -= HandleSettingTransferClciked;
+            aptCommunicator.OnAprTransferCancelled -= OnTransferCancelled;
         }
     }
 }

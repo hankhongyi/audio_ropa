@@ -151,42 +151,6 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
-        ///   查詢類似 1. Please connect the APT-1 dedicated cable to the computer. 的當地語系化字串。
-        /// </summary>
-        public static string AptTransferSsentence1 {
-            get {
-                return ResourceManager.GetString("AptTransferSsentence1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查詢類似 2.  Click the &quot;Transfer&quot; button below. 的當地語系化字串。
-        /// </summary>
-        public static string AptTransferSsentence2 {
-            get {
-                return ResourceManager.GetString("AptTransferSsentence2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查詢類似 3. When the APT-1’s purple indicator flashes rapidly three times, it means the transfer is successful and the cable can be disconnected. 的當地語系化字串。
-        /// </summary>
-        public static string AptTransferSsentence3 {
-            get {
-                return ResourceManager.GetString("AptTransferSsentence3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查詢類似 4. To transfer to another APT-1, please repeat the steps above. 的當地語系化字串。
-        /// </summary>
-        public static string AptTransferSsentence4 {
-            get {
-                return ResourceManager.GetString("AptTransferSsentence4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查詢類似 Auracast Channel Name 的當地語系化字串。
         /// </summary>
         public static string AuracastChannelName {

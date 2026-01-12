@@ -147,18 +147,6 @@
   <data name="APTDeviceText" xml:space="preserve">
     <value>APT-1</value>
   </data>
-  <data name="AptTransferSsentence1" xml:space="preserve">
-    <value>1. Please connect the APT-1 dedicated cable to the computer.</value>
-  </data>
-  <data name="AptTransferSsentence2" xml:space="preserve">
-    <value>2.  Click the "Transfer" button below.</value>
-  </data>
-  <data name="AptTransferSsentence3" xml:space="preserve">
-    <value>3. When the APT-1’s purple indicator flashes rapidly three times, it means the transfer is successful and the cable can be disconnected.</value>
-  </data>
-  <data name="AptTransferSsentence4" xml:space="preserve">
-    <value>4. To transfer to another APT-1, please repeat the steps above.</value>
-  </data>
   <data name="AuracastChannelName" xml:space="preserve">
     <value>Auracast Channel Name</value>
   </data>
