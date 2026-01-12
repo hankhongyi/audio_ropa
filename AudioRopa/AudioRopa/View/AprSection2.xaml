@@ -12,6 +12,6 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Border Height="55" Grid.Row="0" Margin="20,0,20,0"/>
-        <local:AptTransfer x:Name="AptTransfer"  Grid.Row="1" Margin="20,0,20,0" Visibility="Visible"/>
+        <local:AprTransfer x:Name="AprTransfer"  Grid.Row="1" Margin="20,0,20,0" Visibility="Visible"/>
     </Grid>
 </UserControl>

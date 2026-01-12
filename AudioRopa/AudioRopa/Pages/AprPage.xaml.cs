@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 using AudioRopa.Model;
 
 namespace AudioRopa.Pages
@@ -19,17 +20,20 @@ namespace AudioRopa.Pages
     public partial class AprPage : Page
     {
         private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
+        private AprInfo aprInformation = new AprInfo();
         public AprPage()
         {
             InitializeComponent();
-            aptCommunicator.OnAprSettingTransferClicked += HandleTransferClciked;
-            aptCommunicator.OnAptTransferCancelled += OnTransferCancelled;
+            aptCommunicator.OnAprSettingTransferClicked += HandleSettingTransferClciked;
+            aptCommunicator.OnAprTransferCancelled += OnTransferCancelled;
+            aptCommunicator.OnAprTransferClicked += OnTransferClicked;
         }
         
-        private void HandleTransferClciked()
+        private void HandleSettingTransferClciked(AprInfo aprInfo)
         {
             if (AprSection2.Visibility == Visibility.Collapsed)
             {
+                aprInformation = aprInfo;
                 AprSection2.Visibility = Visibility.Visible;
             }
         }
@@ -40,6 +44,20 @@ namespace AudioRopa.Pages
             {
                 AprSection2.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void OnTransferClicked()
+        {
+            Debug.WriteLine("aprInformation:" + aprInformation);
+            if (aprInformation.ChannelName != string.Empty && aprInformation.Password != string.Empty)
+            {
+                Debug.WriteLine("information is OK");
+            }
+        }
+
+        private void WriteAprInfo(AprInfo apr)
+        {
+
         }
     }
 }

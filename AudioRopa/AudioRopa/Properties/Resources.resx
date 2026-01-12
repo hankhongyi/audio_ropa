@@ -132,20 +132,32 @@
   <data name="APRDeviceText" xml:space="preserve">
     <value>APR-1</value>
   </data>
+  <data name="AprTransferSsentence1" xml:space="preserve">
+    <value>1. Please connect the APR-1 dedicated cable to the computer.</value>
+  </data>
+  <data name="AprTransferSsentence2" xml:space="preserve">
+    <value>2.  Click the "Transfer" button below.</value>
+  </data>
+  <data name="AprTransferSsentence3" xml:space="preserve">
+    <value>3. When the APR-1’s purple indicator flashes rapidly three times, it means the transfer is successful and the cable can be disconnected.</value>
+  </data>
+  <data name="AprTransferSsentence4" xml:space="preserve">
+    <value>4. To transfer to another APR-1, please repeat the steps above.</value>
+  </data>
   <data name="APTDeviceText" xml:space="preserve">
     <value>APT-1</value>
   </data>
   <data name="AptTransferSsentence1" xml:space="preserve">
-    <value>1. Please connect the APR-1 dedicated cable to the computer.</value>
+    <value>1. Please connect the APT-1 dedicated cable to the computer.</value>
   </data>
   <data name="AptTransferSsentence2" xml:space="preserve">
     <value>2.  Click the "Transfer" button below.</value>
   </data>
   <data name="AptTransferSsentence3" xml:space="preserve">
-    <value>3. When the APR-1’s purple indicator flashes rapidly three times, it means the transfer is successful and the cable can be disconnected.</value>
+    <value>3. When the APT-1’s purple indicator flashes rapidly three times, it means the transfer is successful and the cable can be disconnected.</value>
   </data>
   <data name="AptTransferSsentence4" xml:space="preserve">
-    <value>4. To transfer to another APR-1, please repeat the steps above.</value>
+    <value>4. To transfer to another APT-1, please repeat the steps above.</value>
   </data>
   <data name="AuracastChannelName" xml:space="preserve">
     <value>Auracast Channel Name</value>
@@ -168,6 +180,9 @@
   <data name="ChooseYourDevice" xml:space="preserve">
     <value>Choose Your Device</value>
   </data>
+  <data name="Connect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
   <data name="Connection" xml:space="preserve">
     <value>Connection:</value>
   </data>
@@ -179,6 +194,9 @@
   </data>
   <data name="DeviceName" xml:space="preserve">
     <value>Device Name:</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>Disconnect</value>
   </data>
   <data name="FirmwareVersion" xml:space="preserve">
     <value>Firmware Version:</value>
@@ -203,6 +221,9 @@
   </data>
   <data name="PasteData" xml:space="preserve">
     <value>Paste the saved data</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Port</value>
   </data>
   <data name="ReturnToHomepage" xml:space="preserve">
     <value>Return to homepage</value>

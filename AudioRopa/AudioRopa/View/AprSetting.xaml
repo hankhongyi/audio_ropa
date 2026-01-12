@@ -21,6 +21,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <!-- Title -->
@@ -28,37 +30,59 @@
                           Text="{x:Static properties:Resources.AuracastPriority}"
                           Style="{StaticResource TitleItalicTextStyle}"/>
 
+                <Grid Grid.Row="1" Margin="0,30,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               Text="{x:Static properties:Resources.Port}"
+                               Style="{StaticResource InfoTextBlockStyle}"/>
+                    <ComboBox Grid.Column="1" x:Name="PortComboBox" 
+                              Width="200" 
+                              Margin="10,0,0,0"
+                              Foreground="White">
+                        <ComboBox.Resources>
+                            <SolidColorBrush x:Key="ComboBox.Static.Glyph" Color="White"/>
+                            <SolidColorBrush x:Key="ComboBox.MouseOver.Glyph" Color="White"/>
+                            <SolidColorBrush x:Key="ComboBox.Pressed.Glyph" Color="White"/>
+                            <SolidColorBrush x:Key="ComboBox.Disabled.Glyph" Color="#BFBFBF"/>
+                        </ComboBox.Resources>
+                    </ComboBox>
+                </Grid>
+
                 <!-- Auracast Channel Name -->
-                <TextBlock Grid.Row="1" Margin="0,30,0,0"
+                <TextBlock Grid.Row="2" Margin="0,20,0,0"
                                Text="{x:Static properties:Resources.AuracastChannelName}"
                                Style="{StaticResource InfoTextBlockStyle}"/>
 
-                <TextBox Grid.Row="2" x:Name="AuracastChannelNameInput" Margin="0,8,0,0"
+                <TextBox Grid.Row="3" x:Name="AuracastChannelNameInput" Margin="0,8,0,0"
                          Style="{StaticResource GrayTextBoxStyle}"/>
 
                 <!-- Password -->
-                <TextBlock Grid.Row="3" Margin="0,20,0,0"
+                <TextBlock Grid.Row="4" Margin="0,20,0,0"
                                Text="{x:Static properties:Resources.PasswordTitle}"
                                Style="{StaticResource InfoTextBlockStyle}"/>
 
-                <TextBox Grid.Row="4" x:Name="AuracastPasswordInput" Margin="0,8,0,0"
+                <TextBox Grid.Row="5" x:Name="AuracastPasswordInput" Margin="0,8,0,0"
                          Style="{StaticResource GrayTextBoxStyle}"/>
                 
                 <!-- Save Data Button -->
-                <custom:CustomButton Grid.Row="5" Margin="0,20,0,0"
+                <custom:CustomButton Grid.Row="6" Margin="0,20,0,0"
                                      Title="{x:Static properties:Resources.SaveData}" Click="OnSaveDataClick"/>
 
                 <!-- Paste Data Button -->
-                <custom:CustomButton Grid.Row="6" Margin="0,20,0,0"
+                <custom:CustomButton Grid.Row="7" Margin="0,20,0,0"
                                      Title="{x:Static properties:Resources.PasteData}" Click="OnPasteDataClick"/>
 
-                <custom:CustomRedButton Grid.Row="7" x:Name="TransterButton"
+                <custom:CustomRedButton Grid.Row="8" x:Name="TransterButton"
                                         Height="45"
                                         Margin="0,45,0,0"
                                         ButtonText="{x:Static properties:Resources.Transfer}"
                                         Click="OnTransferClicked"/>
 
-                <custom:CustomAccentButton Grid.Row="8" x:Name="ReturnHomeButton"
+                <custom:CustomAccentButton Grid.Row="9" x:Name="ReturnHomeButton"
                                         Height="45"
                                         Margin="0,25,0,0"
                                         ButtonText="{x:Static properties:Resources.ReturnToHomepage}"

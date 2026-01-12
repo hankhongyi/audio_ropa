@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO.Ports;
 using AudioRopa.Model;
 
 namespace AudioRopa.View
@@ -22,6 +23,7 @@ namespace AudioRopa.View
         public AprSetting()
         {
             InitializeComponent();
+            Loaded += OnLoaded;
         }
 
         private void OnSaveDataClick(object sender, RoutedEventArgs e)
@@ -34,12 +36,31 @@ namespace AudioRopa.View
 
         private void OnTransferClicked(object sender, RoutedEventArgs e)
         {
-            aptCommunicator.InvokeAprSettingTransfer();
+            AprInfo aprInfo = collectAprInfo();
+            aptCommunicator.InvokeAprSettingTransfer(aprInfo);
         }
 
         private void OnReturnHomeClicked(object sender, RoutedEventArgs e)
         {
-            aptCommunicator.InvokeReturnHoome();
+            aptCommunicator.InvokeReturnHome();
+        }
+
+        private void OnLoaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            string[] ports = SerialPort.GetPortNames();
+            PortComboBox.ItemsSource = ports;
+        }
+
+        private AprInfo collectAprInfo()
+        {
+            string portName = PortComboBox.SelectedItem?.ToString() ?? string.Empty;
+            string channelName = AuracastChannelNameInput.Text;
+            string password = AuracastPasswordInput.Text;
+            AprInfo aprInfo = new AprInfo();
+            aprInfo.Port = portName;
+            aprInfo.ChannelName = channelName;
+            aprInfo.Password = password;
+            return aprInfo;
         }
     }
 }

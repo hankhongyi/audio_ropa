@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace AudioRopa.View
 {
-    /// <summary>
-    /// AprSection2.xaml 的互動邏輯
-    /// </summary>
     public partial class AprSection2 : UserControl
     {
         public AprSection2()

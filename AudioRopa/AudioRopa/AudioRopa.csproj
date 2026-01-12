@@ -112,6 +112,7 @@
     <Compile Include="Custom\SwitchButton.xaml.cs">
       <DependentUpon>SwitchButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\AprInfo.cs" />
     <Compile Include="Model\AptCommunicator.cs" />
     <Compile Include="Model\AuracastInfo.cs" />
     <Compile Include="Pages\AprPage.xaml.cs">
@@ -145,6 +146,9 @@
     </Compile>
     <Compile Include="View\AprSetting.xaml.cs">
       <DependentUpon>AprSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AprTransfer.xaml.cs">
+      <DependentUpon>AprTransfer.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AptConnector.xaml.cs">
       <DependentUpon>AptConnector.xaml</DependentUpon>
@@ -240,6 +244,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AprSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AprTransfer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

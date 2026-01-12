@@ -112,7 +112,7 @@ namespace AudioRopa.View
 
         private void OnReturnHomeButtonClicked(object sender, RoutedEventArgs e)
         {
-            aptCommunicator.InvokeReturnHoome();
+            aptCommunicator.InvokeReturnHome();
         }
 
         private void HadnleConnectClicked()

@@ -106,6 +106,42 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 1. Please connect the APR-1 dedicated cable to the computer. 的當地語系化字串。
+        /// </summary>
+        public static string AprTransferSsentence1 {
+            get {
+                return ResourceManager.GetString("AprTransferSsentence1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 2.  Click the &quot;Transfer&quot; button below. 的當地語系化字串。
+        /// </summary>
+        public static string AprTransferSsentence2 {
+            get {
+                return ResourceManager.GetString("AprTransferSsentence2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 3. When the APR-1’s purple indicator flashes rapidly three times, it means the transfer is successful and the cable can be disconnected. 的當地語系化字串。
+        /// </summary>
+        public static string AprTransferSsentence3 {
+            get {
+                return ResourceManager.GetString("AprTransferSsentence3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 4. To transfer to another APR-1, please repeat the steps above. 的當地語系化字串。
+        /// </summary>
+        public static string AprTransferSsentence4 {
+            get {
+                return ResourceManager.GetString("AprTransferSsentence4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 APT-1 的當地語系化字串。
         /// </summary>
         public static string APTDeviceText {
@@ -115,7 +151,7 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
-        ///   查詢類似 1. Please connect the APR-1 dedicated cable to the computer. 的當地語系化字串。
+        ///   查詢類似 1. Please connect the APT-1 dedicated cable to the computer. 的當地語系化字串。
         /// </summary>
         public static string AptTransferSsentence1 {
             get {
@@ -133,7 +169,7 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
-        ///   查詢類似 3. When the APR-1’s purple indicator flashes rapidly three times, it means the transfer is successful and the cable can be disconnected. 的當地語系化字串。
+        ///   查詢類似 3. When the APT-1’s purple indicator flashes rapidly three times, it means the transfer is successful and the cable can be disconnected. 的當地語系化字串。
         /// </summary>
         public static string AptTransferSsentence3 {
             get {
@@ -142,7 +178,7 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
-        ///   查詢類似 4. To transfer to another APR-1, please repeat the steps above. 的當地語系化字串。
+        ///   查詢類似 4. To transfer to another APT-1, please repeat the steps above. 的當地語系化字串。
         /// </summary>
         public static string AptTransferSsentence4 {
             get {
@@ -214,6 +250,15 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 Connect 的當地語系化字串。
+        /// </summary>
+        public static string Connect {
+            get {
+                return ResourceManager.GetString("Connect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 Connection: 的當地語系化字串。
         /// </summary>
         public static string Connection {
@@ -246,6 +291,15 @@ namespace AudioRopa.Properties {
         public static string DeviceName {
             get {
                 return ResourceManager.GetString("DeviceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Disconnect 的當地語系化字串。
+        /// </summary>
+        public static string Disconnect {
+            get {
+                return ResourceManager.GetString("Disconnect", resourceCulture);
             }
         }
         
@@ -318,6 +372,15 @@ namespace AudioRopa.Properties {
         public static string PasteData {
             get {
                 return ResourceManager.GetString("PasteData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Port 的當地語系化字串。
+        /// </summary>
+        public static string Port {
+            get {
+                return ResourceManager.GetString("Port", resourceCulture);
             }
         }
         
