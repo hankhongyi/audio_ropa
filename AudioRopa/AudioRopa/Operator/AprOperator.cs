@@ -14,6 +14,7 @@ namespace AudioRopa.Operator
         private SerialPort _serialPort;
         private Queue<byte[]> _byteArrayQueue;
         private byte[] _currentComamnd;
+        private readonly object _queueLock = new object();
 
         public AprOperator()
         {
@@ -67,10 +68,18 @@ namespace AudioRopa.Operator
 
         private void ExecuteCommand()
         {
-            if (_byteArrayQueue.Count > 0)
+            byte[] command = null;
+            lock (_queueLock)
             {
-                byte[] command = _byteArrayQueue.Dequeue();
-                _currentComamnd = command;
+                if (_byteArrayQueue.Count > 0)
+                {
+                    command = _byteArrayQueue.Dequeue();
+                    _currentComamnd = command;
+                }
+            }
+
+            if (command != null)
+            {
                 SendCommand(command);
             }
             else
@@ -99,7 +108,7 @@ namespace AudioRopa.Operator
             Debug.WriteLine("hex:" + hex);
             
             //Execute next command if the response is received.
-            if (buffer.Length > 0 && buffer[1] == 0x5B && buffer[8] == 0x00) {
+            if (buffer.Length >= 9 && buffer[1] == 0x5B && buffer[8] == 0x00) {
                 ExecuteCommand();
             }
 
@@ -151,21 +160,24 @@ namespace AudioRopa.Operator
             Debug.WriteLine("passwordBytes:" + BitConverter.ToString(passwordBytes));
 
             byte[] auracast_password = new byte[10 + passwordLength];
-            auracast_channel_name[0] = 0x05;
-            auracast_channel_name[1] = 0x5A;
-            auracast_channel_name[2] = totalPasswordLengthByte;
-            auracast_channel_name[3] = 0x00;
-            auracast_channel_name[4] = 0x12;
-            auracast_channel_name[5] = 0x20;
-            auracast_channel_name[6] = 0x62;
-            auracast_channel_name[7] = 0x00;
-            auracast_channel_name[8] = 0x00;
-            auracast_channel_name[9] = passwordLengthByte;
+            auracast_password[0] = 0x05;
+            auracast_password[1] = 0x5A;
+            auracast_password[2] = totalPasswordLengthByte;
+            auracast_password[3] = 0x00;
+            auracast_password[4] = 0x12;
+            auracast_password[5] = 0x20;
+            auracast_password[6] = 0x64;
+            auracast_password[7] = 0x00;
+            auracast_password[8] = 0x00;
+            auracast_password[9] = passwordLengthByte;
             Array.Copy(passwordBytes, 0, auracast_password, 10, passwordLength);
 
-            _byteArrayQueue.Enqueue(auracast_priority);
-            _byteArrayQueue.Enqueue(auracast_channel_name);
-            _byteArrayQueue.Enqueue(auracast_password);
+            lock (_queueLock)
+            {
+                _byteArrayQueue.Enqueue(auracast_priority);
+                _byteArrayQueue.Enqueue(auracast_channel_name);
+                _byteArrayQueue.Enqueue(auracast_password);
+            }
         }
 
         private void Close()
