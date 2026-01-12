@@ -115,6 +115,7 @@
     <Compile Include="Model\AprInfo.cs" />
     <Compile Include="Model\AptCommunicator.cs" />
     <Compile Include="Model\AuracastInfo.cs" />
+    <Compile Include="Operator\AprOperator.cs" />
     <Compile Include="Pages\AprPage.xaml.cs">
       <DependentUpon>AprPage.xaml</DependentUpon>
     </Compile>

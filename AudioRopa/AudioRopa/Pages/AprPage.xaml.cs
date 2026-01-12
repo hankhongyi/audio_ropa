@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using AudioRopa.Model;
+using AudioRopa.Operator;
 
 namespace AudioRopa.Pages
 {
@@ -21,6 +22,7 @@ namespace AudioRopa.Pages
     {
         private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
         private AprInfo aprInformation = new AprInfo();
+        private AprOperator aprOperator = new AprOperator();
         public AprPage()
         {
             InitializeComponent();
@@ -52,12 +54,8 @@ namespace AudioRopa.Pages
             if (aprInformation.ChannelName != string.Empty && aprInformation.Password != string.Empty)
             {
                 Debug.WriteLine("information is OK");
+                aprOperator.write(aprInformation);
             }
-        }
-
-        private void WriteAprInfo(AprInfo apr)
-        {
-
         }
     }
 }
