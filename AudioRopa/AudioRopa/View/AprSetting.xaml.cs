@@ -48,7 +48,20 @@ namespace AudioRopa.View
         private void OnLoaded(object sender, System.Windows.RoutedEventArgs e)
         {
             string[] ports = SerialPort.GetPortNames();
+            // Clear existing items first
+            PortComboBox.Items.Clear();
+
+            // Set the ItemsSource
             PortComboBox.ItemsSource = ports;
+
+            // Optionally select the first item
+            if (ports.Length > 0)
+            {
+                PortComboBox.SelectedIndex = 0;
+            }
+
+            // Force UI update
+            PortComboBox.Items.Refresh();
         }
 
         private AprInfo collectAprInfo()

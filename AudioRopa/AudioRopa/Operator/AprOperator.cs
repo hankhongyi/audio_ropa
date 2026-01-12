@@ -1,11 +1,10 @@
-﻿using System;
+﻿using AudioRopa.Model;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO.Ports;
-using AudioRopa.Model;
+using System.Text;
+using System.Threading;
 
 namespace AudioRopa.Operator
 {
@@ -15,6 +14,10 @@ namespace AudioRopa.Operator
         private Queue<byte[]> _byteArrayQueue;
         private byte[] _currentComamnd;
         private readonly object _queueLock = new object();
+        private Thread _commandThread;
+        public event Action OnAprTransferStared;
+        public event Action OnAprTransferCompleted;
+        public event Action<string> OnAprTransferError;
 
         public AprOperator()
         {
@@ -25,17 +28,30 @@ namespace AudioRopa.Operator
         
         public void write(AprInfo aprInfo)
         {
+            OnAprTransferStared?.Invoke();
             PrepareCommand(aprInfo);
             ConfigurePort(aprInfo.Port);
             if (OpenConnection())
             {
-                ExecuteCommand();
+                // Create and start a new thread to execute commands
+                _commandThread = new Thread(new ThreadStart(SendCommands));
+                _commandThread.IsBackground = true; // Set as background thread
+                _commandThread.Start();
             }
         }
 
         private void ConfigurePort(string portName)
         {
-            if (portName == string.Empty) portName = "COM3";
+            if (_serialPort.IsOpen)
+            {
+                _serialPort.Close();
+            }
+            Debug.WriteLine("Configuring port: " + portName);
+            if (portName == string.Empty)
+            {
+                OnAprTransferError?.Invoke("Invalid port name.");
+                return;
+            }
             // Standard UART Configuration
             _serialPort.PortName = portName; // e.g., "COM3"
             _serialPort.BaudRate = 3000000; // e.g., 9600, 115200
@@ -63,8 +79,25 @@ namespace AudioRopa.Operator
             catch (Exception ex)
             {
                 Debug.WriteLine($"Error opening port: {ex.Message}");
+                OnAprTransferError?.Invoke("Error opening port: " + ex.Message);
                 return false;
             }
+        }
+
+        private void SendCommands()
+        {
+            byte[] command = null;
+            int size = _byteArrayQueue.Count;
+            for (int i = 0; i < size; i++)
+            {
+                command = _byteArrayQueue.Dequeue();
+                Debug.WriteLine("command:" + BitConverter.ToString(command));
+                SendCommand(command);
+                Thread.Sleep(200); // Wait between commands
+            }
+            Thread.Sleep(200);
+            Close();
+            OnAprTransferCompleted?.Invoke();
         }
 
         private void ExecuteCommand()
@@ -81,6 +114,7 @@ namespace AudioRopa.Operator
 
             if (command != null)
             {
+                Debug.WriteLine("command:" + BitConverter.ToString(command));
                 SendCommand(command);
             }
             else
@@ -106,12 +140,12 @@ namespace AudioRopa.Operator
             
             //Convert to hex string for debugging
             string hex = BitConverter.ToString(buffer);
-            Debug.WriteLine("hex:" + hex);
+            Debug.WriteLine("response:" + hex);
             
             //Execute next command if the response is received.
-            if (buffer.Length >= 9 && buffer[1] == 0x5B && buffer[8] == 0x00) {
-                ExecuteCommand();
-            }
+            //if (buffer.Length >= 9 && buffer[1] == 0x5B && buffer[8] == 0x00) {
+            //    ExecuteCommand();
+            //}
 
             // Update the UI safely
             //Application.Current.Dispatcher.Invoke(() =>
@@ -183,7 +217,11 @@ namespace AudioRopa.Operator
 
         private void Close()
         {
-            if (_serialPort != null && _serialPort.IsOpen) _serialPort.Close();
+            if (_serialPort != null && _serialPort.IsOpen)
+            {
+                _serialPort.Close();
+                Debug.WriteLine("Serial port closed.");
+            }
         }
     }
 

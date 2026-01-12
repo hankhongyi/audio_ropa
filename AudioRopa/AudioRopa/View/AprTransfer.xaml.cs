@@ -60,12 +60,51 @@ namespace AudioRopa.View
         {
             //Seems like OnLoaded is called multiple times, so unsubscript previous subscription first.
             aptCommunicator.OnAprSettingTransferClicked -= HandleSettingTransferClciked;
+            aprOperator.OnAprTransferStared -= OnTransferStarted;
+            aprOperator.OnAprTransferCompleted -= OnTransferCompleted;
+            aprOperator.OnAprTransferError -= OnTransferError;
+
             aptCommunicator.OnAprSettingTransferClicked += HandleSettingTransferClciked;
+            aprOperator.OnAprTransferStared += OnTransferStarted;
+            aprOperator.OnAprTransferCompleted += OnTransferCompleted;
+            aprOperator.OnAprTransferError += OnTransferError;
         }
 
         private void OnUnloaded(object sender, System.Windows.RoutedEventArgs e)
         {
             aptCommunicator.OnAprSettingTransferClicked -= HandleSettingTransferClciked;
+            aprOperator.OnAprTransferStared -= OnTransferStarted;
+            aprOperator.OnAprTransferCompleted -= OnTransferCompleted;
+            aprOperator.OnAprTransferError -= OnTransferError;
+        }
+
+        private void OnTransferStarted()
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                //Run on UI thread
+                Debug.WriteLine("Transfer Started");
+            });
+           
+        }
+
+        private void OnTransferCompleted()
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                //Run on UI thread
+                Debug.WriteLine("Transfer Completed");
+            });
+           
+        }
+
+        private void OnTransferError(string errorMessage)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                //Run on UI thread
+                Debug.WriteLine("Transfer Error: " + errorMessage);
+            });
         }
     }
 }

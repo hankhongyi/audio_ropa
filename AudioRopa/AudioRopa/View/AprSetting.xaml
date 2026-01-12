@@ -40,14 +40,20 @@
                                Text="{x:Static properties:Resources.Port}"
                                Style="{StaticResource InfoTextBlockStyle}"/>
                     <ComboBox Grid.Column="1" x:Name="PortComboBox" 
-                              Width="200" 
-                              Margin="10,0,0,0"
-                              Foreground="White">
+                              Width="120"
+                              Margin="20,0,0,0"
+                              Foreground="Black"
+                              Background="White">
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="ComboBoxItem">
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
                         <ComboBox.Resources>
-                            <SolidColorBrush x:Key="ComboBox.Static.Glyph" Color="White"/>
-                            <SolidColorBrush x:Key="ComboBox.MouseOver.Glyph" Color="White"/>
-                            <SolidColorBrush x:Key="ComboBox.Pressed.Glyph" Color="White"/>
-                            <SolidColorBrush x:Key="ComboBox.Disabled.Glyph" Color="#BFBFBF"/>
+                            <SolidColorBrush x:Key="ComboBox.Static.Glyph" Color="Black"/>
+                            <SolidColorBrush x:Key="ComboBox.MouseOver.Glyph" Color="Black"/>
+                            <SolidColorBrush x:Key="ComboBox.Pressed.Glyph" Color="Black"/>
+                            <SolidColorBrush x:Key="ComboBox.Disabled.Glyph" Color="#555555"/>
                         </ComboBox.Resources>
                     </ComboBox>
                 </Grid>
