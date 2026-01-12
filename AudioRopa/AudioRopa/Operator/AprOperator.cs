@@ -53,10 +53,11 @@ namespace AudioRopa.Operator
         {
             try
             {
-                if (!_serialPort.IsOpen)
+                if (_serialPort.IsOpen)
                 {
-                    _serialPort.Open();
+                    _serialPort.Close();
                 }
+                _serialPort.Open();
                 return true;
             }
             catch (Exception ex)
