@@ -24,13 +24,8 @@ namespace AudioRopa.View
         public AptInfoSetting()
         {
             InitializeComponent();
-            aptCommunicator.OnAgcOnOffChanged += HandleAgcOnOff;
-            aptCommunicator.OnAuracastInfoRead += HandleAuracasstInfoRead;
-            
-            // Setup transmission quality input formatting
-            AuracastTransmissionQualityInput.PreviewTextInput += TransmissionQuality_PreviewTextInput;
-            AuracastTransmissionQualityInput.GotFocus += TransmissionQuality_GotFocus;
-            AuracastTransmissionQualityInput.LostFocus += TransmissionQuality_LostFocus;
+            Loaded += OnLoaded;
+            Unloaded += OnUnloaded;
         }
 
         private void AGCSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -152,6 +147,28 @@ namespace AudioRopa.View
             auracast.Agc = AGCControl.AgcSwitch.IsOn;
             auracast.TxPower = (int)AGCSlider.Value;
             return auracast;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            aptCommunicator.OnAgcOnOffChanged += HandleAgcOnOff;
+            aptCommunicator.OnAuracastInfoRead += HandleAuracasstInfoRead;
+
+            // Setup transmission quality input formatting
+            AuracastTransmissionQualityInput.PreviewTextInput += TransmissionQuality_PreviewTextInput;
+            AuracastTransmissionQualityInput.GotFocus += TransmissionQuality_GotFocus;
+            AuracastTransmissionQualityInput.LostFocus += TransmissionQuality_LostFocus;
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            aptCommunicator.OnAgcOnOffChanged -= HandleAgcOnOff;
+            aptCommunicator.OnAuracastInfoRead -= HandleAuracasstInfoRead;
+
+            // Setup transmission quality input formatting
+            AuracastTransmissionQualityInput.PreviewTextInput -= TransmissionQuality_PreviewTextInput;
+            AuracastTransmissionQualityInput.GotFocus -= TransmissionQuality_GotFocus;
+            AuracastTransmissionQualityInput.LostFocus -= TransmissionQuality_LostFocus;
         }
     }
 }
