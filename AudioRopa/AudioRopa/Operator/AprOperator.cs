@@ -127,6 +127,7 @@ namespace AudioRopa.Operator
             byte totalNameLengthByte = (byte)totalNameLength;
             byte nameLengthByte = (byte)nameLength;
             byte[] channelNameBytes = Encoding.UTF8.GetBytes(aprInfo.ChannelName);
+            Debug.WriteLine("channelNameBytes:" + BitConverter.ToString(channelNameBytes));
 
             byte[] auracast_channel_name = new byte[10 + nameLength];
             auracast_channel_name[0] = 0x05;
@@ -147,6 +148,7 @@ namespace AudioRopa.Operator
             byte totalPasswordLengthByte = (byte)totalPasswordLength;
             byte passwordLengthByte = (byte)passwordLength;
             byte[] passwordBytes = Encoding.UTF8.GetBytes(aprInfo.Password);
+            Debug.WriteLine("passwordBytes:" + BitConverter.ToString(passwordBytes));
 
             byte[] auracast_password = new byte[10 + passwordLength];
             auracast_channel_name[0] = 0x05;
