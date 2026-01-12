@@ -40,6 +40,9 @@
     <Reference Include="ICSharpCode.AvalonEdit, Version=6.3.1.120, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <HintPath>..\packages\AvalonEdit.6.3.1.120\lib\net462\ICSharpCode.AvalonEdit.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=3.2.0.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.3.2.0\lib\net462\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=5.3.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.5.3.0\lib\net462\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -80,7 +83,9 @@
       <HintPath>..\packages\ShowMeTheXAML.AvalonEdit.2.1.1\lib\net472\ShowMeTheXAML.AvalonEdit.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -100,6 +105,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Bluetooth\DeviceState.cs" />
     <Compile Include="Custom\CustomAccentButton.xaml.cs">
       <DependentUpon>CustomAccentButton.xaml</DependentUpon>
     </Compile>
@@ -112,9 +118,13 @@
     <Compile Include="Custom\SwitchButton.xaml.cs">
       <DependentUpon>SwitchButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Logger\FileLogger.cs" />
+    <Compile Include="Logger\FileLogger2.cs" />
+    <Compile Include="Logger\LogLevel.cs" />
     <Compile Include="Model\AprInfo.cs" />
     <Compile Include="Model\AptCommunicator.cs" />
     <Compile Include="Model\AuracastInfo.cs" />
+    <Compile Include="Model\MsgInfo.cs" />
     <Compile Include="Operator\AprOperator.cs" />
     <Compile Include="Pages\AprPage.xaml.cs">
       <DependentUpon>AprPage.xaml</DependentUpon>
@@ -133,6 +143,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utility\DataConverter.cs" />
+    <Compile Include="Utility\IMessageArea.cs" />
+    <Compile Include="Utility\MessageAreaManager.cs" />
+    <Compile Include="Utility\ResultInfo.cs" />
     <Compile Include="View\AgcControl.xaml.cs">
       <DependentUpon>AgcControl.xaml</DependentUpon>
     </Compile>
