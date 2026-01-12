@@ -16,7 +16,6 @@ namespace AudioRopa.Model
         public event Action<AuracastInfo> OnAuracastInfoUpdated;
         public event Action OnSettingClicked;
         public event Action OnAptInfoSettingCancelled;
-        public event Action OnAptTransferCancelled;
         public event Action<bool> OnAgcOnOffChanged;
         public event Action<AuracastInfo> OnAuracastInfoRead;
         public event Action<AprInfo> OnAprSettingTransferClicked;
@@ -56,11 +55,6 @@ namespace AudioRopa.Model
         public void InvokeAptInfoSettingCancelled()
         {
             OnAptInfoSettingCancelled.Invoke();
-        }
-
-        public void InvokeAptTransferCancelled()
-        {
-            OnAptTransferCancelled.Invoke();
         }
 
         public void InvokeAuracastInfoRead(AuracastInfo auracast)
