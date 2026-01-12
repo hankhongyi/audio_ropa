@@ -53,8 +53,6 @@ namespace AudioRopa.Bluetooth
         private string devicePartnerName = "";
         private int gameChatRatio = 0; //0-20;
         private int gameMicVolume = 0; //0-100;
-
-
         /**
          * Get settings calling sequence after TWS is connected:
          * LibControl.GetDeviceInfoEx(handle);
@@ -75,7 +73,7 @@ namespace AudioRopa.Bluetooth
         }
 
 
-        public void UpdateResult(LibControl.Result result)
+        private void UpdateResult(LibControl.Result result)
         {
             lock (mLock)
             {
@@ -89,14 +87,6 @@ namespace AudioRopa.Bluetooth
                 Debug.WriteLine("info:" + info.ToString());
                 string message = System.Text.Encoding.Default.GetString(info.extra3).Trim('\0');
                 Debug.WriteLine("message:" + message);
-                if (message == "3")
-                {
-                    DispatchTwsConnectedAndGetDeviceInfo();
-                }
-                if (message == "1")
-                {
-                    TWSNotConnected?.Invoke();
-                }
                 msgStack.Push(info);
                 ReceiveCallbackMsg(info);
             }
