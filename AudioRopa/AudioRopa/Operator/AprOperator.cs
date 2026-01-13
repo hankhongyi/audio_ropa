@@ -167,17 +167,41 @@ namespace AudioRopa.Operator
             string hex = BitConverter.ToString(buffer);
             Debug.WriteLine("response:" + hex);
             
-            //Execute next command if the response is received.
-            //if (buffer.Length >= 9 && buffer[1] == 0x5B && buffer[8] == 0x00) {
-            //    ExecuteCommand();
-            //}
+            // Search for set response pattern 05-5B-05-00-12-20
+            byte[] pattern = new byte[] { 0x05, 0x5B, 0x05, 0x00, 0x12, 0x20 };
+            int patternIndex = FindPattern(buffer, pattern);
 
-            // Update the UI safely
-            //Application.Current.Dispatcher.Invoke(() =>
-            //{
-            //    // Assuming you have a TextBox named 'txtLog'
-            //    txtLog.AppendText($"Received: {indata}\n");
-            //});
+            if (patternIndex != -1 && patternIndex + pattern.Length + 3 <= buffer.Length)
+            {
+                // Extract 3 bytes after the pattern
+                byte byte1 = buffer[patternIndex + pattern.Length];
+                byte byte2 = buffer[patternIndex + pattern.Length + 1];
+                byte byte3 = buffer[patternIndex + pattern.Length + 2];
+
+                string extractedBytes = $"{byte1:X2}-{byte2:X2}-{byte3:X2}";
+                Debug.WriteLine($"Found pattern at index {patternIndex}, next 3 bytes: {extractedBytes}");
+            }
+        }
+
+        private int FindPattern(byte[] buffer, byte[] pattern)
+        {
+            for (int i = 0; i <= buffer.Length - pattern.Length; i++)
+            {
+                bool found = true;
+                for (int j = 0; j < pattern.Length; j++)
+                {
+                    if (buffer[i + j] != pattern[j])
+                    {
+                        found = false;
+                        break;
+                    }
+                }
+                if (found)
+                {
+                    return i;
+                }
+            }
+            return -1; // Pattern not found
         }
 
         private void PrepareCommand(AprInfo aprInfo)
