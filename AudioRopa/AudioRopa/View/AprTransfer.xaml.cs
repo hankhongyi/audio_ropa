@@ -102,9 +102,9 @@ namespace AudioRopa.View
             }
 
             //Test code
-            string[] sample = new string[] { "COM1", "COM2", "COM3" };
-            PortComboBox.ItemsSource = sample;
-            PortComboBox.SelectedIndex = 0;
+            //string[] sample = new string[] { "COM1", "COM2", "COM3" };
+            //PortComboBox.ItemsSource = sample;
+            //PortComboBox.SelectedIndex = 0;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
