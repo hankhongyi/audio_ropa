@@ -42,6 +42,8 @@ namespace AudioRopa.View
             if (aprInformation != null && portName != string.Empty &&
                 aprInformation.ChannelName != string.Empty && aprInformation.Password != string.Empty)
             {
+                aprInformation.Port = portName;
+                Debug.WriteLine("aprInformation.Port:" + aprInformation.Port);
                 DisableButtons();
                 Debug.WriteLine("ChannelName:" + aprInformation.ChannelName);
                 Debug.WriteLine("Password:" + aprInformation.Password);
