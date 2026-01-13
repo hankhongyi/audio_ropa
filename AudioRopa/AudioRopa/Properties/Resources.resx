@@ -232,7 +232,7 @@
     <value>Transfer</value>
   </data>
   <data name="Transfer_Closing" xml:space="preserve">
-    <value>Closing transfer port.</value>
+    <value>Data updated. Closing transfer port. Please wait...</value>
   </data>
   <data name="Transfer_Completed" xml:space="preserve">
     <value>Transfer completed.</value>
