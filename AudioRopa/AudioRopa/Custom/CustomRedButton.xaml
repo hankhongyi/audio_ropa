@@ -35,7 +35,7 @@
                 </Grid>
                 <ControlTemplate.Triggers>
                     <Trigger Property="IsEnabled" Value="False">
-                        <Setter TargetName="ButtonText" Property="Foreground" Value="Gray"/>
+                        <Setter TargetName="ButtonText" Property="Foreground" Value="Black"/>
                         <Setter TargetName="ButtonBorder" Property="Background" Value="Gray"/>
                     </Trigger>
                     <Trigger Property="IsPressed" Value="True">
