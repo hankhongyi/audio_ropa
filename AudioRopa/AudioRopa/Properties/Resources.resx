@@ -186,6 +186,12 @@
   <data name="Disconnect" xml:space="preserve">
     <value>Disconnect</value>
   </data>
+  <data name="Error_Apr_Not_Connect" xml:space="preserve">
+    <value>APR-1 is not connected.</value>
+  </data>
+  <data name="Error_Apr_String_Empty" xml:space="preserve">
+    <value>Channel Name or Password is empty.</value>
+  </data>
   <data name="FirmwareVersion" xml:space="preserve">
     <value>Firmware Version:</value>
   </data>
@@ -213,6 +219,9 @@
   <data name="Port" xml:space="preserve">
     <value>Port</value>
   </data>
+  <data name="PortDescription" xml:space="preserve">
+    <value>Select a port to connect. If no ports appear, please ensure the APR-1 is plugged in.</value>
+  </data>
   <data name="ReturnToHomepage" xml:space="preserve">
     <value>Return to homepage</value>
   </data>
@@ -221,6 +230,15 @@
   </data>
   <data name="Transfer" xml:space="preserve">
     <value>Transfer</value>
+  </data>
+  <data name="Transfer_Closing" xml:space="preserve">
+    <value>Closing transfer port.</value>
+  </data>
+  <data name="Transfer_Completed" xml:space="preserve">
+    <value>Transfer completed.</value>
+  </data>
+  <data name="Transfer_Start" xml:space="preserve">
+    <value>Transfer started.</value>
   </data>
   <data name="TransmissionPower" xml:space="preserve">
     <value>Transmission Power Setting:</value>

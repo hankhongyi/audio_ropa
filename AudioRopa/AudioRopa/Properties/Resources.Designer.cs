@@ -268,6 +268,24 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 APR-1 is not connected. 的當地語系化字串。
+        /// </summary>
+        public static string Error_Apr_Not_Connect {
+            get {
+                return ResourceManager.GetString("Error_Apr_Not_Connect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Channel Name or Password is empty. 的當地語系化字串。
+        /// </summary>
+        public static string Error_Apr_String_Empty {
+            get {
+                return ResourceManager.GetString("Error_Apr_String_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 Firmware Version: 的當地語系化字串。
         /// </summary>
         public static string FirmwareVersion {
@@ -349,6 +367,15 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 Select a port to connect. If no ports appear, please ensure the APR-1 is plugged in. 的當地語系化字串。
+        /// </summary>
+        public static string PortDescription {
+            get {
+                return ResourceManager.GetString("PortDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 Return to homepage 的當地語系化字串。
         /// </summary>
         public static string ReturnToHomepage {
@@ -372,6 +399,33 @@ namespace AudioRopa.Properties {
         public static string Transfer {
             get {
                 return ResourceManager.GetString("Transfer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Closing transfer port. 的當地語系化字串。
+        /// </summary>
+        public static string Transfer_Closing {
+            get {
+                return ResourceManager.GetString("Transfer_Closing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Transfer completed. 的當地語系化字串。
+        /// </summary>
+        public static string Transfer_Completed {
+            get {
+                return ResourceManager.GetString("Transfer_Completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Transfer started. 的當地語系化字串。
+        /// </summary>
+        public static string Transfer_Start {
+            get {
+                return ResourceManager.GetString("Transfer_Start", resourceCulture);
             }
         }
         

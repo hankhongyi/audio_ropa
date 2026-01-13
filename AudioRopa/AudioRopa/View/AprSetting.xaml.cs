@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO.Ports;
+using System.Diagnostics;
 using AudioRopa.Model;
 
 namespace AudioRopa.View
@@ -23,7 +24,6 @@ namespace AudioRopa.View
         public AprSetting()
         {
             InitializeComponent();
-            Loaded += OnLoaded;
         }
 
         private void OnSaveDataClick(object sender, RoutedEventArgs e)
@@ -36,7 +36,7 @@ namespace AudioRopa.View
 
         private void OnTransferClicked(object sender, RoutedEventArgs e)
         {
-            AprInfo aprInfo = collectAprInfo();
+            AprInfo aprInfo = CollectAprInfo();
             aptCommunicator.InvokeAprSettingTransfer(aprInfo);
         }
 
@@ -45,28 +45,23 @@ namespace AudioRopa.View
             aptCommunicator.InvokeReturnHome();
         }
 
-        private void OnLoaded(object sender, System.Windows.RoutedEventArgs e)
+        private void AuracastChannelNameInput_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string[] ports = SerialPort.GetPortNames();
-            // Clear existing items first
-            PortComboBox.Items.Clear();
-
-            // Set the ItemsSource
-            PortComboBox.ItemsSource = ports;
-
-            // Optionally select the first item
-            if (ports.Length > 0)
-            {
-                PortComboBox.SelectedIndex = 0;
-            }
-
-            // Force UI update
-            PortComboBox.Items.Refresh();
+            string newText = AuracastChannelNameInput.Text;
+            AprInfo aprInfo = CollectAprInfo();
+            aptCommunicator.InvokeAprChannelNameChanged(aprInfo);
         }
 
-        private AprInfo collectAprInfo()
+        private void AuracastPasswordInput_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string portName = PortComboBox.SelectedItem?.ToString() ?? string.Empty;
+            string newText = AuracastPasswordInput.Text;
+            AprInfo aprInfo = CollectAprInfo();
+            aptCommunicator.InvokeAprPasswordChanged(aprInfo);
+        }
+
+        private AprInfo CollectAprInfo()
+        {
+            string portName = "";
             string channelName = AuracastChannelNameInput.Text;
             string password = AuracastPasswordInput.Text;
             AprInfo aprInfo = new AprInfo();

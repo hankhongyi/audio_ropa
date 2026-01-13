@@ -12,10 +12,12 @@ namespace AudioRopa.Operator
     {
         private SerialPort _serialPort;
         private Queue<byte[]> _byteArrayQueue;
-        private byte[] _currentComamnd;
         private readonly object _queueLock = new object();
         private Thread _commandThread;
+        private CancellationTokenSource _cancellationTokenSource;
+
         public event Action OnAprTransferStared;
+        public event Action OnAprClosingPort;
         public event Action OnAprTransferCompleted;
         public event Action<string> OnAprTransferError;
 
@@ -28,16 +30,37 @@ namespace AudioRopa.Operator
         
         public void write(AprInfo aprInfo)
         {
-            OnAprTransferStared?.Invoke();
-            PrepareCommand(aprInfo);
-            ConfigurePort(aprInfo.Port);
-            if (OpenConnection())
+            _cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken token = _cancellationTokenSource.Token;
+            
+            _commandThread = new Thread(() =>
             {
-                // Create and start a new thread to execute commands
-                _commandThread = new Thread(new ThreadStart(SendCommands));
-                _commandThread.IsBackground = true; // Set as background thread
-                _commandThread.Start();
-            }
+                try
+                {
+                    token.ThrowIfCancellationRequested();
+                    OnAprTransferStared?.Invoke();
+                    
+                    token.ThrowIfCancellationRequested();
+                    PrepareCommand(aprInfo);
+                    
+                    token.ThrowIfCancellationRequested();
+                    ConfigurePort(aprInfo.Port);
+                    
+                    token.ThrowIfCancellationRequested();
+                    if (OpenConnection())
+                    {
+                        SendCommands(token);
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    Debug.WriteLine("Transfer cancelled");
+                    Close();
+                    OnAprTransferError?.Invoke("Transfer cancelled by user");
+                }
+            });
+            _commandThread.IsBackground = true;
+            _commandThread.Start();
         }
 
         private void ConfigurePort(string portName)
@@ -84,17 +107,20 @@ namespace AudioRopa.Operator
             }
         }
 
-        private void SendCommands()
+        private void SendCommands(CancellationToken token)
         {
             byte[] command = null;
             int size = _byteArrayQueue.Count;
             for (int i = 0; i < size; i++)
             {
+                token.ThrowIfCancellationRequested();
+                
                 command = _byteArrayQueue.Dequeue();
                 Debug.WriteLine("command:" + BitConverter.ToString(command));
                 SendCommand(command);
                 Thread.Sleep(200); // Wait between commands
             }
+            OnAprClosingPort?.Invoke();
             Thread.Sleep(200);
             Close();
             OnAprTransferCompleted?.Invoke();
@@ -108,7 +134,6 @@ namespace AudioRopa.Operator
                 if (_byteArrayQueue.Count > 0)
                 {
                     command = _byteArrayQueue.Dequeue();
-                    _currentComamnd = command;
                 }
             }
 
@@ -222,6 +247,11 @@ namespace AudioRopa.Operator
                 _serialPort.Close();
                 Debug.WriteLine("Serial port closed.");
             }
+        }
+
+        public void CancelTransfer()
+        {
+            _cancellationTokenSource?.Cancel();
         }
     }
 

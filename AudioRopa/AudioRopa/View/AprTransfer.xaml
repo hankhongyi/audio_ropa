@@ -19,8 +19,11 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Margin="0,50,0,0"
+                <TextBlock Grid.Row="0" Margin="0,5,0,0"
                           Text="{x:Static properties:Resources.AprTransferSsentence1}"
                           Style="{StaticResource NormalTextBlockStyle}"/>
                 <TextBlock Grid.Row="1" Margin="0,15,0,0"
@@ -32,16 +35,39 @@
                 <TextBlock Grid.Row="3" Margin="0,15,0,0"
                           Text="{x:Static properties:Resources.AprTransferSsentence4}"
                           Style="{StaticResource NormalTextBlockStyle}"/>
-                
-                <StackPanel Grid.Row="4" Height="275"/>
-                
-                <custom:CustomRedButton Grid.Row="5" x:Name="ConnectButton"
+
+                <Grid Grid.Row="4" Margin="0,30,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               Text="{x:Static properties:Resources.Port}"
+                               Style="{StaticResource InfoTextBlockStyle}"/>
+                    <ComboBox Grid.Column="1" x:Name="PortComboBox" 
+                              Width="120"
+                              Height="30"
+                              Margin="10,0,0,0"
+                              VerticalContentAlignment="Center"
+                              Style="{StaticResource WhiteComboBoxStyle}"
+                              ItemContainerStyle="{StaticResource BlackTextComboBoxItemStyle}"/>
+                </Grid>
+                <TextBlock Grid.Row="5" Margin="0,10,0,0"
+                          Text="{x:Static properties:Resources.PortDescription}"
+                          Style="{StaticResource SmallTextBlockStyle}"/>
+
+                <StackPanel Grid.Row="6" Height="50"/>
+
+                <TextBlock Grid.Row="7" x:Name="TransferStatusText"
+                          Style="{StaticResource SmallInfoTextBlockStyle}"/>
+
+                <custom:CustomRedButton Grid.Row="8" x:Name="ConnectButton"
                                         Height="45"
-                                        Margin="0,25,0,0"
+                                        Margin="0,15,0,0"
                                         ButtonText="{x:Static properties:Resources.Transfer}"
                                         Click="OnTransferClicked"/>
 
-                <custom:CustomAccentButton Grid.Row="6" x:Name="QrCodeButton"
+                <custom:CustomAccentButton Grid.Row="9" x:Name="CancelButton"
                                            Height="45"
                                            Margin="0,25,0,0"
                                            ButtonText="{x:Static properties:Resources.Cancel}"

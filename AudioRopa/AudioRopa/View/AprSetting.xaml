@@ -30,41 +30,14 @@
                           Text="{x:Static properties:Resources.AuracastPriority}"
                           Style="{StaticResource TitleItalicTextStyle}"/>
 
-                <Grid Grid.Row="1" Margin="0,30,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="{x:Static properties:Resources.Port}"
-                               Style="{StaticResource InfoTextBlockStyle}"/>
-                    <ComboBox Grid.Column="1" x:Name="PortComboBox" 
-                              Width="120"
-                              Margin="20,0,0,0"
-                              Foreground="Black"
-                              Background="White">
-                        <ComboBox.ItemContainerStyle>
-                            <Style TargetType="ComboBoxItem">
-                                <Setter Property="Foreground" Value="Black"/>
-                            </Style>
-                        </ComboBox.ItemContainerStyle>
-                        <ComboBox.Resources>
-                            <SolidColorBrush x:Key="ComboBox.Static.Glyph" Color="Black"/>
-                            <SolidColorBrush x:Key="ComboBox.MouseOver.Glyph" Color="Black"/>
-                            <SolidColorBrush x:Key="ComboBox.Pressed.Glyph" Color="Black"/>
-                            <SolidColorBrush x:Key="ComboBox.Disabled.Glyph" Color="#555555"/>
-                        </ComboBox.Resources>
-                    </ComboBox>
-                </Grid>
-
                 <!-- Auracast Channel Name -->
                 <TextBlock Grid.Row="2" Margin="0,20,0,0"
                                Text="{x:Static properties:Resources.AuracastChannelName}"
                                Style="{StaticResource InfoTextBlockStyle}"/>
 
                 <TextBox Grid.Row="3" x:Name="AuracastChannelNameInput" Margin="0,8,0,0"
-                         Style="{StaticResource GrayTextBoxStyle}"/>
+                         Style="{StaticResource GrayTextBoxStyle}"
+                         TextChanged="AuracastChannelNameInput_TextChanged"/>
 
                 <!-- Password -->
                 <TextBlock Grid.Row="4" Margin="0,20,0,0"
@@ -72,7 +45,8 @@
                                Style="{StaticResource InfoTextBlockStyle}"/>
 
                 <TextBox Grid.Row="5" x:Name="AuracastPasswordInput" Margin="0,8,0,0"
-                         Style="{StaticResource GrayTextBoxStyle}"/>
+                         Style="{StaticResource GrayTextBoxStyle}"
+                         TextChanged="AuracastPasswordInput_TextChanged"/>
                 
                 <!-- Save Data Button -->
                 <custom:CustomButton Grid.Row="6" Margin="0,20,0,0"

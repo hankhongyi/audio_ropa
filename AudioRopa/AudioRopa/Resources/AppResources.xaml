@@ -12,7 +12,8 @@
     <Color x:Key="AccentColor">#FF6B35</Color>
     <Color x:Key="LightRedColor">#FF7253</Color>
     <Color x:Key="DarkBackgroundColor">#22252A</Color>
-
+    <Color x:Key="LightBlueColor">#B6F4FC</Color>
+    
     <!-- Brushes -->
     <SolidColorBrush x:Key="PrimaryBlackBrush" Color="{StaticResource PrimaryBlackColor}"/>
     <SolidColorBrush x:Key="SecondaryBlackBrush" Color="{StaticResource SecondaryBlackColorColor}"/>
@@ -21,12 +22,14 @@
     <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
     <SolidColorBrush x:Key="LightRedBrush" Color="{StaticResource LightRedColor}"/>
     <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{StaticResource DarkBackgroundColor}"/>
-    
+    <SolidColorBrush x:Key="LightBlueBrush" Color="{StaticResource LightBlueColor}"/>
+
+
     <LinearGradientBrush x:Key="SelectedGradient" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Color="{StaticResource SelectedGradientStartColor}" Offset="0"/>
         <GradientStop Color="{StaticResource SelectedGradientEndColor}" Offset="1"/>
     </LinearGradientBrush>
-    
+
     <LinearGradientBrush x:Key="NormalGradient" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Color="{StaticResource NormalGradientStartColor}" Offset="0"/>
         <GradientStop Color="{StaticResource NormalGradientEndColor}" Offset="1"/>
@@ -78,6 +81,28 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="{DynamicResource FontSize16}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- Small Info TextBlock Styles -->
+    <Style x:Key="SmallInfoTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Foreground" Value="{StaticResource LightBlueBrush}"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSize12}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- Small TextBlock Styles -->
+    <Style x:Key="SmallTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSize12}"/>
         <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -183,6 +208,23 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <!-- ComboBox Style -->
+    <Style x:Key="WhiteComboBoxStyle" TargetType="ComboBox">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Background" Value="White"/>
+        <Style.Resources>
+            <SolidColorBrush x:Key="ComboBox.Static.Glyph" Color="Black"/>
+            <SolidColorBrush x:Key="ComboBox.MouseOver.Glyph" Color="Black"/>
+            <SolidColorBrush x:Key="ComboBox.Pressed.Glyph" Color="Black"/>
+            <SolidColorBrush x:Key="ComboBox.Disabled.Glyph" Color="#555555"/>
+        </Style.Resources>
+    </Style>
+
+    <!-- ComboBoxItem Style -->
+    <Style x:Key="BlackTextComboBoxItemStyle" TargetType="ComboBoxItem">
+        <Setter Property="Foreground" Value="Black"/>
     </Style>
 
 </ResourceDictionary>

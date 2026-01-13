@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO.Ports;
 using System.Diagnostics;
 using AudioRopa.Model;
 using AudioRopa.Operator;
@@ -20,6 +21,8 @@ namespace AudioRopa.View
 {
     public partial class AprTransfer : UserControl
     {
+        private bool _isInitialized = false;
+        private bool _isVisible = false;
         private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
         private AprInfo aprInformation;
         private AprOperator aprOperator = new AprOperator();
@@ -33,21 +36,34 @@ namespace AudioRopa.View
 
         private void OnTransferClicked(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("On Transfer Button Clicked");
-            if (aprInformation != null && aprInformation.ChannelName != string.Empty && aprInformation.Password != string.Empty)
+            TransferStatusText.Text = "";
+            string portName = PortComboBox.SelectedItem?.ToString() ?? string.Empty;
+            Debug.WriteLine("portName:" + portName);
+            if (aprInformation != null && portName != string.Empty &&
+                aprInformation.ChannelName != string.Empty && aprInformation.Password != string.Empty)
             {
-                Debug.WriteLine("information is OK");
+                DisableButtons();
+                Debug.WriteLine("ChannelName:" + aprInformation.ChannelName);
+                Debug.WriteLine("Password:" + aprInformation.Password);
                 aprOperator.write(aprInformation);
             }
             else
             {
-                Debug.WriteLine("- aprInformation is null or contains empty string -");
+                if (aprInformation == null || portName == string.Empty)
+                {
+                    TransferStatusText.Text = Properties.Resources.Error_Apr_Not_Connect;
+                }
+                if (aprInformation.ChannelName == string.Empty || aprInformation.Password == string.Empty)
+                {
+                    TransferStatusText.Text = Properties.Resources.Error_Apr_String_Empty;
+                }
             }
         }
 
         private void OnCancelClicked(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("On Cancel Button Clicked");
+            aprOperator.CancelTransfer();
             aptCommunicator.InvokeAprTransferCancelled();
         }
 
@@ -56,26 +72,82 @@ namespace AudioRopa.View
             aprInformation = aprInfo;
         }
 
-        private void OnLoaded(object sender, System.Windows.RoutedEventArgs e)
+        private void HandleChannelNameChanged(AprInfo aprInfo)
         {
-            //Seems like OnLoaded is called multiple times, so unsubscript previous subscription first.
-            aptCommunicator.OnAprSettingTransferClicked -= HandleSettingTransferClciked;
-            aprOperator.OnAprTransferStared -= OnTransferStarted;
-            aprOperator.OnAprTransferCompleted -= OnTransferCompleted;
-            aprOperator.OnAprTransferError -= OnTransferError;
-
-            aptCommunicator.OnAprSettingTransferClicked += HandleSettingTransferClciked;
-            aprOperator.OnAprTransferStared += OnTransferStarted;
-            aprOperator.OnAprTransferCompleted += OnTransferCompleted;
-            aprOperator.OnAprTransferError += OnTransferError;
+            if (_isVisible)
+            {
+                aprInformation = aprInfo;
+            }
         }
 
-        private void OnUnloaded(object sender, System.Windows.RoutedEventArgs e)
+        private void HandlePasswordChanged(AprInfo aprInfo)
+        {
+            if (_isVisible)
+            {
+                aprInformation = aprInfo;
+            }
+        }
+
+        private void ConfigPort()
+        {
+            string[] ports = SerialPort.GetPortNames();
+
+            // Set the ItemsSource
+            PortComboBox.ItemsSource = ports;
+
+            // Optionally select the first item
+            if (ports.Length > 0)
+            {
+                PortComboBox.SelectedIndex = 0;
+            }
+
+            //Test code
+            string[] sample = new string[] { "COM1", "COM2", "COM3" };
+            PortComboBox.ItemsSource = sample;
+            PortComboBox.SelectedIndex = 0;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (_isInitialized)
+            {
+                return;
+            }
+            _isInitialized = true;
+            aptCommunicator.OnAprSettingTransferClicked += HandleSettingTransferClciked;
+            aptCommunicator.OnAprChannelNameChanged += HandleChannelNameChanged;
+            aptCommunicator.OnAprPassowrdChanged += HandlePasswordChanged;
+            aprOperator.OnAprTransferStared += OnTransferStarted;
+            aprOperator.OnAprClosingPort += OnTransferClosingPort;
+            aprOperator.OnAprTransferCompleted += OnTransferCompleted;
+            aprOperator.OnAprTransferError += OnTransferError;
+            IsVisibleChanged += OnVisibilityChanged;
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             aptCommunicator.OnAprSettingTransferClicked -= HandleSettingTransferClciked;
+            aptCommunicator.OnAprChannelNameChanged -= HandleChannelNameChanged;
+            aptCommunicator.OnAprPassowrdChanged -= HandlePasswordChanged;
             aprOperator.OnAprTransferStared -= OnTransferStarted;
+            aprOperator.OnAprClosingPort -= OnTransferClosingPort;
             aprOperator.OnAprTransferCompleted -= OnTransferCompleted;
             aprOperator.OnAprTransferError -= OnTransferError;
+            IsVisibleChanged -= OnVisibilityChanged;
+        }
+
+        private void OnVisibilityChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            _isVisible = (bool)e.NewValue;
+            Debug.WriteLine("isVisible:" + _isVisible);
+            if (_isVisible)
+            {
+                ConfigPort();
+            }
+            else
+            {
+                TransferStatusText.Text = "";
+            }
         }
 
         private void OnTransferStarted()
@@ -84,8 +156,18 @@ namespace AudioRopa.View
             {
                 //Run on UI thread
                 Debug.WriteLine("Transfer Started");
+                TransferStatusText.Text = Properties.Resources.Transfer_Start;
             });
-           
+        }
+
+        private void OnTransferClosingPort()
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                //Run on UI thread
+                Debug.WriteLine("Transfer Closing Port");
+                TransferStatusText.Text = Properties.Resources.Transfer_Closing;
+            });
         }
 
         private void OnTransferCompleted()
@@ -94,8 +176,9 @@ namespace AudioRopa.View
             {
                 //Run on UI thread
                 Debug.WriteLine("Transfer Completed");
+                TransferStatusText.Text = Properties.Resources.Transfer_Completed;
+                EnableButtons();
             });
-           
         }
 
         private void OnTransferError(string errorMessage)
@@ -103,8 +186,24 @@ namespace AudioRopa.View
             Application.Current.Dispatcher.Invoke(() =>
             {
                 //Run on UI thread
-                Debug.WriteLine("Transfer Error: " + errorMessage);
+                string messagePrefix = "Transfer Error: ";
+                string fullMessage = messagePrefix + errorMessage;
+                Debug.WriteLine(fullMessage);
+                TransferStatusText.Text = errorMessage;
+                EnableButtons();
             });
+        }
+
+        private void EnableButtons()
+        {
+            ConnectButton.IsEnabled = true;
+            CancelButton.IsEnabled = true;
+        }
+
+        private void DisableButtons()
+        {
+            ConnectButton.IsEnabled = false;
+            CancelButton.IsEnabled = false;
         }
     }
 }
