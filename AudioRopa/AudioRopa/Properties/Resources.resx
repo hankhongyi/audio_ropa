@@ -198,6 +198,12 @@
   <data name="GenerateQrCode" xml:space="preserve">
     <value>Generate a QR Code</value>
   </data>
+  <data name="MessageTitle" xml:space="preserve">
+    <value>Messsage</value>
+  </data>
+  <data name="Message_AprDataSaved" xml:space="preserve">
+    <value>The channel name and password have been saved.</value>
+  </data>
   <data name="Off" xml:space="preserve">
     <value>Off</value>
   </data>

@@ -28,10 +28,16 @@ namespace AudioRopa.View
 
         private void OnSaveDataClick(object sender, RoutedEventArgs e)
         {
+            Properties.Settings.Default.ChannelName = AuracastChannelNameInput.Text;
+            Properties.Settings.Default.ChannelPassword = AuracastPasswordInput.Text;
+            Properties.Settings.Default.Save();
+            MessageBox.Show(Properties.Resources.Message_AprDataSaved, Properties.Resources.MessageTitle, MessageBoxButton.OK);
         }
 
         private void OnPasteDataClick(object sender, RoutedEventArgs e)
         {
+            AuracastChannelNameInput.Text = Properties.Settings.Default.ChannelName;
+            AuracastPasswordInput.Text = Properties.Settings.Default.ChannelPassword;
         }
 
         private void OnTransferClicked(object sender, RoutedEventArgs e)
