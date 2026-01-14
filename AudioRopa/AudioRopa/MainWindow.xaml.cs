@@ -23,14 +23,26 @@ namespace AudioRopa
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += OnLoaded;
+            Unloaded += OnUnloaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
             aptCommunicator.OnReturnHomeClicked += HandleReturnHome;
+            VersionText.Text = Properties.Settings.Default.Version;
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            aptCommunicator.OnReturnHomeClicked -= HandleReturnHome;
         }
 
         private void HandleReturnHome()
         {
             // Navigate to DeviceSelectionPage
             MainFrame.Navigate(new DeviceSelectionPage());
-            
+
             // Clear the back stack
             while (MainFrame.CanGoBack)
             {
