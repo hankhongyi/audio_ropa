@@ -1,4 +1,6 @@
-﻿namespace AudioRopa.Bluetooth
+﻿using System;
+using System.Text;
+namespace AudioRopa.Bluetooth
 {
     public static class Commands
     {
@@ -115,6 +117,36 @@
                 command += gains[i].ToString("X2");
             }
             return command;
+        }
+
+        //Auracast related
+        public static string GET_AURACAST_PRIORITY_ON_OFF = "055A0600122061000000";
+        public static string SET_AURACAST_PRIORITY_ON_OFF(byte value)
+        {
+            return "055A06001220600000" + value.ToString("X2");
+        }
+        public static string GET_AURACAST_CHANNEL_NAME = "055A0600122063000000";
+        public static string SET_AURACAST_CHANNEL_NAME(string channelName)
+        {
+            int totalLength = 6 + channelName.Length;
+            int nameLength = channelName.Length;
+            byte[] channelNameBytes = Encoding.UTF8.GetBytes(channelName);
+            string channelNameHex = BitConverter.ToString(channelNameBytes).Replace("-", "");
+            return "055A" + totalLength.ToString("X2") + "001220620000" + nameLength.ToString("X2") + channelNameHex;
+        }
+        public static string GET_AURACAST_PASSWORD = "055A0600122065000000";
+        public static string SET_AURACAST_PASSWORD_NAME(string password)
+        {
+            int totalLength = 6 + password.Length;
+            int passwordLength = password.Length;
+            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+            string passwordHex = BitConverter.ToString(passwordBytes).Replace("-", "");
+            return "055A" + totalLength.ToString("X2") + "001220640000" + passwordLength.ToString("X2") + passwordHex;
+        }
+        public static string GET_AUTO_GEIN_ON_OFF = "055A0600122090000000";
+        public static string SET_AUTO_GEIN_ON_OFF(byte value)
+        {
+            return "055A060012208F0000" + value.ToString("X2");
         }
     }
 }
