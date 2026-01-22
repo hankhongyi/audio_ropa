@@ -299,7 +299,8 @@ namespace AudioRopa.Bluetooth
         public DongleConnectState ConnectDongle()
         {
             init_param.vid = 0x0E8D;
-            init_param.pid = 0x080A; //Aero Max
+            //init_param.pid = 0x080A; //Aero Max
+            init_param.pid = 0x0824; //Audio Ropa
             init_param.conn_dev_type = (byte)AirohaDeviceType.DONGLE;
             init_param.target_dev_type = (byte)AirohaDeviceControlEnum.LOCAL;
 

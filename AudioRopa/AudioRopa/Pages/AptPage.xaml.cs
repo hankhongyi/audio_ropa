@@ -1,18 +1,20 @@
-﻿using System.Windows.Controls;
+﻿using AudioRopa.Bluetooth;
 using AudioRopa.Model;
 using System.Diagnostics;
+using System.Windows.Controls;
 
 namespace AudioRopa.Pages
 {
     public partial class AptPage : Page
     {
         private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
-
+        private DeviceState deviceState = DeviceState.Instance;
         public AptPage()
         {
             InitializeComponent();
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
+            deviceState.ConnectDongle();
         }
 
         private void OnSettingClicked()
