@@ -183,6 +183,9 @@
     <Compile Include="View\AptSection3.xaml.cs">
       <DependentUpon>AptSection3.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SwitchWithTitle.xaml.cs">
+      <DependentUpon>SwitchWithTitle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="XamlDisplayEx.cs" />
     <Page Include="Custom\CustomAccentButton.xaml">
       <SubType>Designer</SubType>
@@ -284,6 +287,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AptSection3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SwitchWithTitle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
