@@ -351,6 +351,12 @@ namespace AudioRopa.Bluetooth
             return gameMicVolume;
         }
 
+        public void SetAuracastOnOff(bool isOn)
+        {
+            string command = isOn ? Commands.SET_AURACAST_PRIORITY_ON_OFF(0x01) : Commands.SET_AURACAST_PRIORITY_ON_OFF(0x00);
+            SendCustomCommand(command);
+        }
+
         private void GetEarBudsSettings()
         {
             _commandQueue.Enqueue(Commands.GET_MIC_MUTE);
@@ -358,6 +364,7 @@ namespace AudioRopa.Bluetooth
             _commandQueue.Enqueue(Commands.GET_MIC_AUTO_GAIN);
             FetchNextGetCommand();
         }
+
 
         private void SendCustomCommand(String command)
         {

@@ -63,6 +63,32 @@ namespace AudioRopa.Operator
             _commandThread.Start();
         }
 
+        public void SetAprAuracastOnOff(AprInfo aprInfo, bool isOn)
+        {
+            _commandThread = new Thread(() =>
+            {
+                try
+                {
+                    ConfigurePort(aprInfo.Port);
+                    if (OpenConnection())
+                    {
+                        byte[] command = GetAuracastOnOffCommand(isOn);
+                        SendCommand(command);
+                        TriggerPortClosingActions();
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    Debug.WriteLine("Transfer cancelled");
+                    Close();
+                    OnAprTransferError?.Invoke("Transfer cancelled by user");
+                }
+            });
+
+            _commandThread.IsBackground = true;
+            _commandThread.Start();
+        }
+
         private void ConfigurePort(string portName)
         {
             if (_serialPort.IsOpen)
@@ -120,6 +146,11 @@ namespace AudioRopa.Operator
                 SendCommand(command);
                 Thread.Sleep(200); // Wait between commands
             }
+            TriggerPortClosingActions();
+        }
+
+        private void TriggerPortClosingActions()
+        {
             OnAprClosingPort?.Invoke();
             Thread.Sleep(200);
             Close();
@@ -208,7 +239,7 @@ namespace AudioRopa.Operator
         {
             _byteArrayQueue.Clear();
             //Turn on auracast priority
-            byte[] auracast_priority = new byte[] { 0x05, 0x5A, 0x06, 0x00, 0x12, 0x20, 0x60, 0x00, 0x00, 0x01 };
+            byte[] auracast_priority = GetAuracastOnOffCommand(true);
 
             //0x05, 0x5A, 0x06, 0x00, 0x12, 0x20, 0x60, 0x00, 0x00, 0x01
             //0x05, 0x5A, 0x06, 0x00, 0x12, 0x20, 0x62, 0x00, 0x00, name_length, channel_name_bytes...
@@ -261,6 +292,17 @@ namespace AudioRopa.Operator
                 _byteArrayQueue.Enqueue(auracast_priority);
                 _byteArrayQueue.Enqueue(auracast_channel_name);
                 _byteArrayQueue.Enqueue(auracast_password);
+            }
+        }
+
+        private byte[] GetAuracastOnOffCommand(bool isOn)
+        {
+            if (isOn) {
+                return new byte[] { 0x05, 0x5A, 0x06, 0x00, 0x12, 0x20, 0x60, 0x00, 0x00, 0x01 };
+            }
+            else
+            {
+                return new byte[] { 0x05, 0x5A, 0x06, 0x00, 0x12, 0x20, 0x60, 0x00, 0x00, 0x00 };
             }
         }
 
