@@ -156,8 +156,11 @@
   <data name="AuracastInfoSetting" xml:space="preserve">
     <value>Auracast Information Setting</value>
   </data>
+  <data name="AuracastOnOff" xml:space="preserve">
+    <value>Auracast On/Off</value>
+  </data>
   <data name="AuracastPriority" xml:space="preserve">
-    <value>Auracast Priority Setting</value>
+    <value>Rx Auracast Setting</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>

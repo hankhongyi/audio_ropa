@@ -178,7 +178,16 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
-        ///   查詢類似 Auracast Priority Setting 的當地語系化字串。
+        ///   查詢類似 Auracast On/Off 的當地語系化字串。
+        /// </summary>
+        public static string AuracastOnOff {
+            get {
+                return ResourceManager.GetString("AuracastOnOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Rx Auracast Setting 的當地語系化字串。
         /// </summary>
         public static string AuracastPriority {
             get {
