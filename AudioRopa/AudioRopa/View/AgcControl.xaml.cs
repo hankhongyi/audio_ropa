@@ -18,7 +18,7 @@ namespace AudioRopa.View
 {
     public partial class AgcControl : UserControl
     {
-        private readonly AptCommunicator AptCommunicator = AptCommunicator.Instance;
+        private readonly AppCommunicator AptCommunicator = AppCommunicator.Instance;
         public AgcControl()
         {
             InitializeComponent();

@@ -19,7 +19,7 @@ namespace AudioRopa.View
 {
     public partial class AptInfoSetting : UserControl
     {
-        private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
+        private readonly AppCommunicator aptCommunicator = AppCommunicator.Instance;
 
         public AptInfoSetting()
         {
@@ -85,7 +85,7 @@ namespace AudioRopa.View
         private void OnUpdagteClicked(object sender, RoutedEventArgs e)
         {
             AuracastInfo auracast = ComposeAuracastInfo();
-            aptCommunicator.InvokeAuracastInfoUpdate(auracast);
+            aptCommunicator.InvokeAptSettingUpdate(auracast);
         }
 
         private void OnCancelClicked(object sender, RoutedEventArgs e)

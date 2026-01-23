@@ -19,7 +19,7 @@ namespace AudioRopa
 {
     public partial class MainWindow : Window
     {
-        private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
+        private readonly AppCommunicator aptCommunicator = AppCommunicator.Instance;
         public MainWindow()
         {
             InitializeComponent();

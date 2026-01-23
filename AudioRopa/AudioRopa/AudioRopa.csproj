@@ -122,7 +122,7 @@
     <Compile Include="Logger\FileLogger2.cs" />
     <Compile Include="Logger\LogLevel.cs" />
     <Compile Include="Model\AprInfo.cs" />
-    <Compile Include="Model\AptCommunicator.cs" />
+    <Compile Include="Model\AppCommunicator.cs" />
     <Compile Include="Model\AuracastInfo.cs" />
     <Compile Include="Model\MsgInfo.cs" />
     <Compile Include="Operator\AprOperator.cs" />

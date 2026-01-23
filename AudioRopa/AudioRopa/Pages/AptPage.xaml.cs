@@ -7,7 +7,7 @@ namespace AudioRopa.Pages
 {
     public partial class AptPage : Page
     {
-        private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
+        private readonly AppCommunicator aptCommunicator = AppCommunicator.Instance;
         private DeviceState deviceState = DeviceState.Instance;
         public AptPage()
         {
@@ -25,7 +25,7 @@ namespace AudioRopa.Pages
             AptSettings.AptInfoSetting.Visibility = System.Windows.Visibility.Visible;
         }
 
-        private void OnConnectClicked()
+        private void OnConnectClicked(AprInfo aprInfo)
         {
             AptSettings.Visibility = System.Windows.Visibility.Visible;
             AptSettings.AprTransfer.Visibility = System.Windows.Visibility.Visible;
@@ -52,18 +52,18 @@ namespace AudioRopa.Pages
 
         private void OnLoaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            aptCommunicator.OnSettingClicked += OnSettingClicked;
-            aptCommunicator.OnConnectClicked += OnConnectClicked;
-            aptCommunicator.OnAptInfoSettingCancelled += OnAptInfoSettingCancelled;
+            aptCommunicator.OnAptSettingClicked += OnSettingClicked;
+            aptCommunicator.OnAptConnectClicked += OnConnectClicked;
+            aptCommunicator.OnAptSettingCancelled += OnAptInfoSettingCancelled;
             aptCommunicator.OnAprTransferCancelled += OnAprTransferCancelled;
         }
 
 
         private void OnUnloaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            aptCommunicator.OnSettingClicked -= OnSettingClicked;
-            aptCommunicator.OnConnectClicked -= OnConnectClicked;
-            aptCommunicator.OnAptInfoSettingCancelled -= OnAptInfoSettingCancelled;
+            aptCommunicator.OnAptSettingClicked -= OnSettingClicked;
+            aptCommunicator.OnAptConnectClicked -= OnConnectClicked;
+            aptCommunicator.OnAptSettingCancelled -= OnAptInfoSettingCancelled;
             aptCommunicator.OnAprTransferCancelled -= OnAprTransferCancelled;
         }
     }

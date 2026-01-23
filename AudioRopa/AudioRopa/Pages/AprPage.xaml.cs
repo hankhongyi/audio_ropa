@@ -20,7 +20,7 @@ namespace AudioRopa.Pages
 {
     public partial class AprPage : Page
     {
-        private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
+        private readonly AppCommunicator aptCommunicator = AppCommunicator.Instance;
         public AprPage()
         {
             InitializeComponent();

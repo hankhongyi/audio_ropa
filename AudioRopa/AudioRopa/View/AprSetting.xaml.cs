@@ -20,7 +20,7 @@ namespace AudioRopa.View
 {
     public partial class AprSetting : UserControl
     {
-        private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
+        private readonly AppCommunicator aptCommunicator = AppCommunicator.Instance;
         public AprSetting()
         {
             InitializeComponent();

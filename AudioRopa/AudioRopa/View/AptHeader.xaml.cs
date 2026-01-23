@@ -17,7 +17,7 @@ namespace AudioRopa.View
 {
     public partial class AptHeader : UserControl
     {
-        private readonly AptCommunicator AptCommunicator = AptCommunicator.Instance;
+        private readonly AppCommunicator AptCommunicator = AppCommunicator.Instance;
 
         public AptHeader()
         {

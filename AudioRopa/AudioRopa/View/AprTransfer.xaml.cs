@@ -23,7 +23,7 @@ namespace AudioRopa.View
     {
         private bool _isInitialized = false;
         private bool _isVisible = false;
-        private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
+        private readonly AppCommunicator aptCommunicator = AppCommunicator.Instance;
         private AprInfo aprInformation;
         private AprOperator aprOperator = new AprOperator();
 
@@ -69,7 +69,7 @@ namespace AudioRopa.View
             aptCommunicator.InvokeAprTransferCancelled();
         }
 
-        private void HandleSettingTransferClciked(AprInfo aprInfo)
+        private void HandleSettingTransferClicked(AprInfo aprInfo)
         {
             aprInformation = aprInfo;
         }
@@ -88,6 +88,12 @@ namespace AudioRopa.View
             {
                 aprInformation = aprInfo;
             }
+        }
+
+        private void HandleAptConnectClicked(AprInfo aprInfo)
+        {
+            //Coming from APT page
+            aprInformation = aprInfo;
         }
 
         private void ConfigPort()
@@ -116,9 +122,10 @@ namespace AudioRopa.View
                 return;
             }
             _isInitialized = true;
-            aptCommunicator.OnAprSettingTransferClicked += HandleSettingTransferClciked;
+            aptCommunicator.OnAprSettingTransferClicked += HandleSettingTransferClicked;
             aptCommunicator.OnAprChannelNameChanged += HandleChannelNameChanged;
             aptCommunicator.OnAprPassowrdChanged += HandlePasswordChanged;
+            aptCommunicator.OnAptConnectClicked += HandleAptConnectClicked;
             aprOperator.OnAprTransferStared += OnTransferStarted;
             aprOperator.OnAprClosingPort += OnTransferClosingPort;
             aprOperator.OnAprTransferCompleted += OnTransferCompleted;
@@ -128,9 +135,10 @@ namespace AudioRopa.View
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            aptCommunicator.OnAprSettingTransferClicked -= HandleSettingTransferClciked;
+            aptCommunicator.OnAprSettingTransferClicked -= HandleSettingTransferClicked;
             aptCommunicator.OnAprChannelNameChanged -= HandleChannelNameChanged;
             aptCommunicator.OnAprPassowrdChanged -= HandlePasswordChanged;
+            aptCommunicator.OnAptConnectClicked -= HandleAptConnectClicked;
             aprOperator.OnAprTransferStared -= OnTransferStarted;
             aprOperator.OnAprClosingPort -= OnTransferClosingPort;
             aprOperator.OnAprTransferCompleted -= OnTransferCompleted;

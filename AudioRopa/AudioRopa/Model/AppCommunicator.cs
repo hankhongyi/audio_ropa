@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace AudioRopa.Model
 {
-    public class AptCommunicator
+    public class AppCommunicator
     {
-        private static readonly Lazy<AptCommunicator> _instance = new Lazy<AptCommunicator>(() => new AptCommunicator());
-        public static AptCommunicator Instance => _instance.Value;
+        private static readonly Lazy<AppCommunicator> _instance = new Lazy<AppCommunicator>(() => new AppCommunicator());
+        public static AppCommunicator Instance => _instance.Value;
 
-        public event Action OnConnectClicked;
-        public event Action OnGenerateQrCodeClicked;
-        public event Action<AuracastInfo> OnAuracastInfoUpdated;
-        public event Action OnSettingClicked;
-        public event Action OnAptInfoSettingCancelled;
+        public event Action<AprInfo> OnAptConnectClicked;
+        public event Action OnAptGenerateQrCodeClicked;
+        public event Action<AuracastInfo> OnAptSettingUpdateClicked;
+        public event Action OnAptSettingClicked;
+        public event Action OnAptSettingCancelled;
         public event Action<bool> OnAgcOnOffChanged;
         public event Action<AuracastInfo> OnAuracastInfoRead;
         public event Action<AprInfo> OnAprSettingTransferClicked;
@@ -25,28 +25,28 @@ namespace AudioRopa.Model
         public event Action OnAprTransferCancelled;
         public event Action OnReturnHomeClicked;
 
-        private AptCommunicator()
+        private AppCommunicator()
         {
         }
 
-        public void InvokeConnect()
+        public void InvokeAptConnect(AprInfo aprInfo)
         {
-            OnConnectClicked.Invoke();
+            OnAptConnectClicked.Invoke(aprInfo);
         }
 
         public void InvokeGenerateQrCode()
         {
-            OnGenerateQrCodeClicked.Invoke();
+            OnAptGenerateQrCodeClicked.Invoke();
         }
 
-        public void InvokeAuracastInfoUpdate(AuracastInfo auracast)
+        public void InvokeAptSettingUpdate(AuracastInfo auracast)
         {
-            OnAuracastInfoUpdated.Invoke(auracast);
+            OnAptSettingUpdateClicked.Invoke(auracast);
         }
 
         public void InvokeSetting()
         {
-            OnSettingClicked.Invoke();
+            OnAptSettingClicked.Invoke();
         }
 
         public void InvokeAgcOnOff(bool isOn)
@@ -56,7 +56,7 @@ namespace AudioRopa.Model
 
         public void InvokeAptInfoSettingCancelled()
         {
-            OnAptInfoSettingCancelled.Invoke();
+            OnAptSettingCancelled.Invoke();
         }
 
         public void InvokeAuracastInfoRead(AuracastInfo auracast)

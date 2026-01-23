@@ -19,14 +19,14 @@ namespace AudioRopa.View
 {
     public partial class AptConnector : UserControl
     {
-        private readonly AptCommunicator aptCommunicator = AptCommunicator.Instance;
+        private readonly AppCommunicator aptCommunicator = AppCommunicator.Instance;
         
         public AptConnector()
         {
             InitializeComponent();
-            aptCommunicator.OnSettingClicked += HandleSettingClicked;
-            aptCommunicator.OnGenerateQrCodeClicked += HandleGenerateQrCode;
-            aptCommunicator.OnAuracastInfoUpdated += HandleAuracastInfoUpdated;
+            aptCommunicator.OnAptSettingClicked += HandleSettingClicked;
+            aptCommunicator.OnAptGenerateQrCodeClicked += HandleGenerateQrCode;
+            aptCommunicator.OnAptSettingUpdateClicked += HandleAuracastInfoUpdated;
         }
 
         private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -102,7 +102,10 @@ namespace AudioRopa.View
         private void OnConnectButtonClicked(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("On Connect Button Clicked");
-            aptCommunicator.InvokeConnect();
+            AprInfo aprInfo = new AprInfo();
+            aprInfo.ChannelName = ChannelName.Text;
+            aprInfo.Password = Password.Text;
+            aptCommunicator.InvokeAptConnect(aprInfo);
         }
 
         private void OnQrCodeButtonClicked(object sender, RoutedEventArgs e)
