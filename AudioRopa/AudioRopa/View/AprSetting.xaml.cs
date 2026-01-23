@@ -15,15 +15,18 @@ using System.Windows.Shapes;
 using System.IO.Ports;
 using System.Diagnostics;
 using AudioRopa.Model;
-
+using AudioRopa.Operator;
 namespace AudioRopa.View
 {
     public partial class AprSetting : UserControl
     {
-        private readonly AppCommunicator aptCommunicator = AppCommunicator.Instance;
+        private readonly AppCommunicator appCommunicator = AppCommunicator.Instance;
+
         public AprSetting()
         {
             InitializeComponent();
+            Loaded += OnLoaded;
+            Unloaded += OnUnLoaded;
         }
 
         private void OnSaveDataClick(object sender, RoutedEventArgs e)
@@ -43,26 +46,26 @@ namespace AudioRopa.View
         private void OnTransferClicked(object sender, RoutedEventArgs e)
         {
             AprInfo aprInfo = CollectAprInfo();
-            aptCommunicator.InvokeAprSettingTransfer(aprInfo);
+            appCommunicator.InvokeAprSettingTransfer(aprInfo);
         }
 
         private void OnReturnHomeClicked(object sender, RoutedEventArgs e)
         {
-            aptCommunicator.InvokeReturnHome();
+            appCommunicator.InvokeReturnHome();
         }
 
         private void AuracastChannelNameInput_TextChanged(object sender, TextChangedEventArgs e)
         {
             string newText = AuracastChannelNameInput.Text;
             AprInfo aprInfo = CollectAprInfo();
-            aptCommunicator.InvokeAprChannelNameChanged(aprInfo);
+            appCommunicator.InvokeAprChannelNameChanged(aprInfo);
         }
 
         private void AuracastPasswordInput_TextChanged(object sender, TextChangedEventArgs e)
         {
             string newText = AuracastPasswordInput.Text;
             AprInfo aprInfo = CollectAprInfo();
-            aptCommunicator.InvokeAprPasswordChanged(aprInfo);
+            appCommunicator.InvokeAprPasswordChanged(aprInfo);
         }
 
         private AprInfo CollectAprInfo()
@@ -75,6 +78,16 @@ namespace AudioRopa.View
             aprInfo.ChannelName = channelName;
             aprInfo.Password = password;
             return aprInfo;
+        }
+
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+        }
+
+
+        private void OnUnLoaded(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
