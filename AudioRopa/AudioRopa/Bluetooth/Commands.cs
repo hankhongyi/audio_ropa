@@ -135,7 +135,7 @@ namespace AudioRopa.Bluetooth
             return "055A" + totalLength.ToString("X2") + "001220620000" + nameLength.ToString("X2") + channelNameHex;
         }
         public static string GET_AURACAST_PASSWORD = "055A0600122065000000";
-        public static string SET_AURACAST_PASSWORD_NAME(string password)
+        public static string SET_AURACAST_PASSWORD(string password)
         {
             int totalLength = 6 + password.Length;
             int passwordLength = password.Length;

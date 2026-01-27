@@ -14,12 +14,14 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using AudioRopa.Model;
+using AudioRopa.Bluetooth;
 
 namespace AudioRopa.View
 {
     public partial class AptInfoSetting : UserControl
     {
         private readonly AppCommunicator aptCommunicator = AppCommunicator.Instance;
+        private readonly DeviceState deviceState = DeviceState.Instance;
 
         public AptInfoSetting()
         {
@@ -86,6 +88,7 @@ namespace AudioRopa.View
         {
             AuracastInfo auracast = ComposeAuracastInfo();
             aptCommunicator.InvokeAptSettingUpdate(auracast);
+            deviceState.SetAuracastInfo(auracast.ChannelName, auracast.Password);
         }
 
         private void OnCancelClicked(object sender, RoutedEventArgs e)

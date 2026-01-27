@@ -41,6 +41,8 @@ namespace AudioRopa.Bluetooth
         public event Action TWSNotConnected;
         public event Action GetSettingsStarted;
         public event Action AllSettingsLoaded;
+        public event Action AuracastInfoLoaded;
+        public event Action AuracastInfoUpdated;
 
         private bool isFetching = false;
 
@@ -53,6 +55,10 @@ namespace AudioRopa.Bluetooth
         private string devicePartnerName = "";
         private int gameChatRatio = 0; //0-20;
         private int gameMicVolume = 0; //0-100;
+        private string auracastChannelName = "";
+        private string auracastPassword = "";
+        private string auracastChannelNameToUpdate = "";
+        private string auracastPasswordToUpdate = "";
         /**
          * Get settings calling sequence after TWS is connected:
          * LibControl.GetDeviceInfoEx(handle);
@@ -65,11 +71,14 @@ namespace AudioRopa.Bluetooth
 
         private void initialize()
         {
-            LibControl.CheckRemoteStatusEx(handle);
-            LibControl.GetAgentChannelEx(handle);
-            LibControl.GetDeviceTypeEx(handle);
-            LibControl.GetAudioFeatureCapability(handle);
-            LibControl.GetAncSettingsEx(handle);
+            //LibControl.CheckRemoteStatusEx(handle);
+            //LibControl.GetAgentChannelEx(handle);
+            //LibControl.GetDeviceTypeEx(handle);
+            //LibControl.GetAudioFeatureCapability(handle);
+            //LibControl.GetAncSettingsEx(handle);
+            //LibControl.GetBatteryInfo();
+            //LibControl.GetBatteryInfoEx(handle);
+
         }
 
 
@@ -125,7 +134,7 @@ namespace AudioRopa.Bluetooth
                         //Get GameMicVolume
                         LibControl.GetGameMicVolumeEx(handle);
                         //Get all custom settings
-                        GetEarBudsSettings();
+                        //GetEarBudsSettings();
                     }
                     else if (info.msgID == (int)MessageID.GAME_CHAT_RATIO)
                     {
@@ -282,16 +291,34 @@ namespace AudioRopa.Bluetooth
             Debug.WriteLine("\nresult: " + string.Join(", ", result));
             Debug.WriteLine("\nresult (hex): " + string.Join(" ", result.Select(b => b.ToString("X2"))));
 
-            if (cmdHex == Commands.SET_SURROUND_RESPONSE ||
-                cmdHex == Commands.SET_ELEVATION_RESPONSE ||
-                cmdHex == Commands.SET_CIRCLE_SIZE_RESPONSE)
+            if (result.Length > 6 && result[0] == 0x05 && result[1] == 0x5B)
             {
-                
-            }
-            else
-            {
-                String prefix = cmdHex.Substring(0, 18);
-                Debug.WriteLine("prefix: " + prefix);
+                int dataLength = (int)result[2];
+                dataLength -= 4;
+                if (result[6] == 0x62)
+                {
+                    //SET_AURACAST_CHANNEL_NAME response
+                }
+                else if (result[6] == 0x63)
+                {
+                    //GET_AURACAST_CHANNEL_NAME response
+                    byte[] nameInBytes = result.Skip(8).Take(dataLength).ToArray();
+                    auracastChannelName = System.Text.Encoding.Default.GetString(nameInBytes).Trim('\0');
+                }
+                else if (result[6] == 0x64)
+                {
+                    //SET_AURACAST_PASSWORD_RESPONE response
+                    auracastChannelName = auracastChannelNameToUpdate;
+                    auracastPassword = auracastPasswordToUpdate;
+                    AuracastInfoUpdated?.Invoke();
+                }
+                else if (result[6] == 0x65)
+                {
+                    //GET_AURACAST_PASSWORD_RESPONE response
+                    byte[] passwordInBytes = result.Skip(8).Take(dataLength).ToArray();
+                    auracastPassword = System.Text.Encoding.Default.GetString(passwordInBytes).Trim('\0');
+                    AuracastInfoLoaded?.Invoke();
+                }
             }
             FetchNextGetCommand();
         }
@@ -316,7 +343,7 @@ namespace AudioRopa.Bluetooth
             {
                 Debug.WriteLine("Dongle connect OK!");
                 handle = ret_handle;
-                initialize();
+                GetAuracastInfo();
                 return DongleConnectState.CONNECTED;
             }
         }
@@ -351,25 +378,47 @@ namespace AudioRopa.Bluetooth
             return gameMicVolume;
         }
 
+        public string GetAuracastChannelName()
+        {
+            return auracastChannelName;
+        }
+
+        public string GetAuracastPassword()
+        {
+            return auracastPassword;
+        }
+
         public void SetAuracastOnOff(bool isOn)
         {
             string command = isOn ? Commands.SET_AURACAST_PRIORITY_ON_OFF(0x01) : Commands.SET_AURACAST_PRIORITY_ON_OFF(0x00);
             SendCustomCommand(command);
         }
 
-        private void GetEarBudsSettings()
+        public void SetAuracastInfo(string channelName, string password)
         {
-            _commandQueue.Enqueue(Commands.GET_MIC_MUTE);
-            _commandQueue.Enqueue(Commands.GET_MIC_RECORDING_TONE);
-            _commandQueue.Enqueue(Commands.GET_MIC_AUTO_GAIN);
+            auracastChannelNameToUpdate = channelName;
+            auracastPasswordToUpdate = password;
+            string setChannelNameCommand = Commands.SET_AURACAST_CHANNEL_NAME(channelName);
+            string setPasswordCommand = Commands.SET_AURACAST_PASSWORD(password);
+            _commandQueue.Clear();
+            _commandQueue.Enqueue(setChannelNameCommand);
+            _commandQueue.Enqueue(setPasswordCommand);
             FetchNextGetCommand();
         }
 
+        private void GetAuracastInfo()
+        {
+            _commandQueue.Clear();
+            _commandQueue.Enqueue(Commands.GET_AURACAST_CHANNEL_NAME);
+            _commandQueue.Enqueue(Commands.GET_AURACAST_PASSWORD);
+            FetchNextGetCommand();
+        }
 
         private void SendCustomCommand(String command)
         {
+            Debug.WriteLine("send command:" + command);
             LibControl.CmdSettings cmd_setting = new LibControl.CmdSettings();
-            cmd_setting.target = 1;
+            cmd_setting.target = 1; //This might be 0 for auracast?
             byte[] data = DataConverter.StringToByteArray(command);
             cmd_setting.cmd_length = (ushort)data.Length;
             cmd_setting.resp_type = Convert.ToByte("5B", 16);

@@ -14,19 +14,20 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using AudioRopa.Model;
+using AudioRopa.Bluetooth;
 
 namespace AudioRopa.View
 {
     public partial class AptConnector : UserControl
     {
         private readonly AppCommunicator aptCommunicator = AppCommunicator.Instance;
-        
+        private readonly DeviceState deviceState = DeviceState.Instance;
+
         public AptConnector()
         {
             InitializeComponent();
-            aptCommunicator.OnAptSettingClicked += HandleSettingClicked;
-            aptCommunicator.OnAptGenerateQrCodeClicked += HandleGenerateQrCode;
-            aptCommunicator.OnAptSettingUpdateClicked += HandleAuracastInfoUpdated;
+            Loaded += OnLoaded;
+            Unloaded += OnUnLoaded;
         }
 
         private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -135,7 +136,7 @@ namespace AudioRopa.View
             ChannelName.Text = auracast.ChannelName;
             Password.Text = auracast.Password;
             TransmissionQuality.Text = auracast.Quality;
-            if(auracast.Agc)
+            if (auracast.Agc)
             {
                 AGC.Text = Properties.Resources.On;
             }
@@ -150,6 +151,30 @@ namespace AudioRopa.View
         {
             AuracastInfo auracastInfo = GetAuracastInfo();
             aptCommunicator.InvokeAuracastInfoRead(auracastInfo);
+        }
+
+        private void HandleAuracastInfoFromDevice()
+        {
+            ChannelName.Text = deviceState.GetAuracastChannelName();
+            Password.Text = deviceState.GetAuracastPassword();
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            aptCommunicator.OnAptSettingClicked += HandleSettingClicked;
+            aptCommunicator.OnAptGenerateQrCodeClicked += HandleGenerateQrCode;
+            aptCommunicator.OnAptSettingUpdateClicked += HandleAuracastInfoUpdated;
+            deviceState.AuracastInfoLoaded += HandleAuracastInfoFromDevice;
+            deviceState.AuracastInfoUpdated += HandleAuracastInfoFromDevice;
+        }
+
+        private void OnUnLoaded(object sender, RoutedEventArgs e)
+        {
+            aptCommunicator.OnAptSettingClicked -= HandleSettingClicked;
+            aptCommunicator.OnAptGenerateQrCodeClicked -= HandleGenerateQrCode;
+            aptCommunicator.OnAptSettingUpdateClicked -= HandleAuracastInfoUpdated;
+            deviceState.AuracastInfoLoaded -= HandleAuracastInfoFromDevice;
+            deviceState.AuracastInfoUpdated -= HandleAuracastInfoFromDevice;
         }
     }
 }
