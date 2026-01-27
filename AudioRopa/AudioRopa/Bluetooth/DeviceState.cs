@@ -291,31 +291,33 @@ namespace AudioRopa.Bluetooth
             Debug.WriteLine("\nresult: " + string.Join(", ", result));
             Debug.WriteLine("\nresult (hex): " + string.Join(" ", result.Select(b => b.ToString("X2"))));
 
-            if (result.Length > 6 && result[0] == 0x05 && result[1] == 0x5B)
+            if (result.Length > 7 && result[1] == 0x05 && result[2] == 0x5B)
             {
-                int dataLength = (int)result[2];
+                int dataLength = (int)result[3];
                 dataLength -= 4;
-                if (result[6] == 0x62)
+                int responseTypeIndex = 7;
+                int skipIndex = 9;
+                if (result[responseTypeIndex] == 0x62)
                 {
                     //SET_AURACAST_CHANNEL_NAME response
                 }
-                else if (result[6] == 0x63)
+                else if (result[responseTypeIndex] == 0x63)
                 {
                     //GET_AURACAST_CHANNEL_NAME response
-                    byte[] nameInBytes = result.Skip(8).Take(dataLength).ToArray();
+                    byte[] nameInBytes = result.Skip(skipIndex).Take(dataLength).ToArray();
                     auracastChannelName = System.Text.Encoding.Default.GetString(nameInBytes).Trim('\0');
                 }
-                else if (result[6] == 0x64)
+                else if (result[responseTypeIndex] == 0x64)
                 {
                     //SET_AURACAST_PASSWORD_RESPONE response
                     auracastChannelName = auracastChannelNameToUpdate;
                     auracastPassword = auracastPasswordToUpdate;
                     AuracastInfoUpdated?.Invoke();
                 }
-                else if (result[6] == 0x65)
+                else if (result[responseTypeIndex] == 0x65)
                 {
                     //GET_AURACAST_PASSWORD_RESPONE response
-                    byte[] passwordInBytes = result.Skip(8).Take(dataLength).ToArray();
+                    byte[] passwordInBytes = result.Skip(skipIndex).Take(dataLength).ToArray();
                     auracastPassword = System.Text.Encoding.Default.GetString(passwordInBytes).Trim('\0');
                     AuracastInfoLoaded?.Invoke();
                 }
@@ -418,7 +420,7 @@ namespace AudioRopa.Bluetooth
         {
             Debug.WriteLine("send command:" + command);
             LibControl.CmdSettings cmd_setting = new LibControl.CmdSettings();
-            cmd_setting.target = 1; //This might be 0 for auracast?
+            cmd_setting.target = 0; //This might be 0 for auracast?
             byte[] data = DataConverter.StringToByteArray(command);
             cmd_setting.cmd_length = (ushort)data.Length;
             cmd_setting.resp_type = Convert.ToByte("5B", 16);

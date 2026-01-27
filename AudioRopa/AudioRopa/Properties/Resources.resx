@@ -147,6 +147,9 @@
   <data name="APTDeviceText" xml:space="preserve">
     <value>APT-1</value>
   </data>
+  <data name="APTInfoUpdated" xml:space="preserve">
+    <value>APT-1 information has been updated.</value>
+  </data>
   <data name="AuracastChannelName" xml:space="preserve">
     <value>Auracast Channel Name</value>
   </data>

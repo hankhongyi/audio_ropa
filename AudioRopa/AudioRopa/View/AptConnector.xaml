@@ -183,7 +183,7 @@
                           Style="{StaticResource InfoTextBlockStyle}"/>
                 <TextBlock Grid.Row="7"
                                x:Name="ChannelName"
-                               Text="Test Channel 1"
+                               Text="-"
                                Style="{StaticResource BoldTextBlockStyle}"/>
 
                 <!-- Password -->
@@ -192,7 +192,7 @@
                           Style="{StaticResource InfoTextBlockStyle}"/>
                 <TextBlock Grid.Row="9"
                                x:Name="Password"
-                               Text="01921368#_*"
+                               Text="-"
                                Style="{StaticResource BoldTextBlockStyle}"/>
 
                 <!-- Transmission Quality -->

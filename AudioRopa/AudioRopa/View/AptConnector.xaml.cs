@@ -155,8 +155,19 @@ namespace AudioRopa.View
 
         private void HandleAuracastInfoFromDevice()
         {
-            ChannelName.Text = deviceState.GetAuracastChannelName();
-            Password.Text = deviceState.GetAuracastPassword();
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                ChannelName.Text = deviceState.GetAuracastChannelName();
+                Password.Text = deviceState.GetAuracastPassword();
+            });
+        }
+
+        private void HandleAuracastInfoUpdatedOnDevice()
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                MessageBox.Show(Properties.Resources.APTInfoUpdated, Properties.Resources.MessageTitle, MessageBoxButton.OK);
+            });
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -165,7 +176,7 @@ namespace AudioRopa.View
             aptCommunicator.OnAptGenerateQrCodeClicked += HandleGenerateQrCode;
             aptCommunicator.OnAptSettingUpdateClicked += HandleAuracastInfoUpdated;
             deviceState.AuracastInfoLoaded += HandleAuracastInfoFromDevice;
-            deviceState.AuracastInfoUpdated += HandleAuracastInfoFromDevice;
+            deviceState.AuracastInfoUpdated += HandleAuracastInfoUpdatedOnDevice;
         }
 
         private void OnUnLoaded(object sender, RoutedEventArgs e)
@@ -174,7 +185,7 @@ namespace AudioRopa.View
             aptCommunicator.OnAptGenerateQrCodeClicked -= HandleGenerateQrCode;
             aptCommunicator.OnAptSettingUpdateClicked -= HandleAuracastInfoUpdated;
             deviceState.AuracastInfoLoaded -= HandleAuracastInfoFromDevice;
-            deviceState.AuracastInfoUpdated -= HandleAuracastInfoFromDevice;
+            deviceState.AuracastInfoUpdated -= HandleAuracastInfoUpdatedOnDevice;
         }
     }
 }
