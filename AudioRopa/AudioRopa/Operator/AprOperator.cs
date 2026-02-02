@@ -72,7 +72,7 @@ namespace AudioRopa.Operator
                     ConfigurePort(aprInfo.Port);
                     if (OpenConnection())
                     {
-                        byte[] command = GetAuracastOnOffCommand(isOn);
+                        byte[] command = RetrieveSetAuracastOnOffCommand(isOn);
                         SendCommand(command);
                         TriggerPortClosingActions();
                     }
@@ -239,7 +239,7 @@ namespace AudioRopa.Operator
         {
             _byteArrayQueue.Clear();
             //Turn on auracast priority
-            byte[] auracast_priority = GetAuracastOnOffCommand(true);
+            byte[] auracast_priority = RetrieveSetAuracastOnOffCommand(true);
 
             //0x05, 0x5A, 0x06, 0x00, 0x12, 0x20, 0x60, 0x00, 0x00, 0x01
             //0x05, 0x5A, 0x06, 0x00, 0x12, 0x20, 0x62, 0x00, 0x00, name_length, channel_name_bytes...
@@ -295,7 +295,7 @@ namespace AudioRopa.Operator
             }
         }
 
-        private byte[] GetAuracastOnOffCommand(bool isOn)
+        private byte[] RetrieveSetAuracastOnOffCommand(bool isOn)
         {
             if (isOn) {
                 return new byte[] { 0x05, 0x5A, 0x06, 0x00, 0x12, 0x20, 0x60, 0x00, 0x00, 0x01 };

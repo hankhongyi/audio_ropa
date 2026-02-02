@@ -234,6 +234,9 @@
   <data name="PortDescription" xml:space="preserve">
     <value>Select a port to connect. If no ports appear, please ensure the APR-1 is plugged in.</value>
   </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
   <data name="ReturnToHomepage" xml:space="preserve">
     <value>Return to homepage</value>
   </data>

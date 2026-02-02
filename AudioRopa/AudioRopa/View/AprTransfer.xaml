@@ -22,6 +22,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Margin="0,5,0,0"
                           Text="{x:Static properties:Resources.AprTransferSsentence1}"
@@ -61,15 +62,22 @@
                 <TextBlock Grid.Row="7" x:Name="TransferStatusText"
                           Style="{StaticResource SmallInfoTextBlockStyle}"/>
 
-                <custom:CustomRedButton Grid.Row="8" x:Name="ConnectButton"
+                <custom:CustomRedButton Grid.Row="8" x:Name="TransferButton"
                                         Height="45"
                                         Margin="0,15,0,0"
                                         ButtonText="{x:Static properties:Resources.Transfer}"
                                         Click="OnTransferClicked"/>
 
-                <custom:CustomAccentButton Grid.Row="9" x:Name="CancelButton"
+                <custom:CustomRedButton Grid.Row="9" x:Name="ResetButtons"
+                                        Height="45"
+                                        Margin="0,15,0,0"
+                                        ButtonText="{x:Static properties:Resources.Reset}"
+                                        Click="OnResetClicked"
+                                        Visibility="Collapsed"/>
+
+                <custom:CustomAccentButton Grid.Row="10" x:Name="CancelButton"
                                            Height="45"
-                                           Margin="0,25,0,0"
+                                           Margin="0,15,0,0"
                                            ButtonText="{x:Static properties:Resources.Cancel}"
                                            Click="OnCancelClicked"/>
             </Grid>

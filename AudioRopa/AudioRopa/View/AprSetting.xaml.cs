@@ -49,6 +49,12 @@ namespace AudioRopa.View
             appCommunicator.InvokeAprSettingTransfer(aprInfo);
         }
 
+        private void OnResetClicked(object sender, RoutedEventArgs e)
+        {
+            AprInfo aprInfo = CollectAprInfo();
+            appCommunicator.InvokeAprSettingReset(aprInfo);
+        }
+
         private void OnReturnHomeClicked(object sender, RoutedEventArgs e)
         {
             appCommunicator.InvokeReturnHome();

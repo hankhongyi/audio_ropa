@@ -27,7 +27,7 @@ namespace AudioRopa.Pages
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
         }
-        
+
         private void HandleSettingTransferClciked(AprInfo aprInfo)
         {
             if (AprSection2.Visibility == Visibility.Collapsed)
@@ -48,12 +48,14 @@ namespace AudioRopa.Pages
         private void OnLoaded(object sender, System.Windows.RoutedEventArgs e)
         {
             aptCommunicator.OnAprSettingTransferClicked += HandleSettingTransferClciked;
+            aptCommunicator.OnAprSettingResetClicked += HandleSettingTransferClciked;
             aptCommunicator.OnAprTransferCancelled += OnTransferCancelled;
         }
 
         private void OnUnloaded(object sender, System.Windows.RoutedEventArgs e)
         {
             aptCommunicator.OnAprSettingTransferClicked -= HandleSettingTransferClciked;
+            aptCommunicator.OnAprSettingResetClicked -= HandleSettingTransferClciked;
             aptCommunicator.OnAprTransferCancelled -= OnTransferCancelled;
         }
     }

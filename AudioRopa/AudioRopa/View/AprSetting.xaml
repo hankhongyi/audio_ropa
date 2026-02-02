@@ -23,6 +23,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <!-- Title -->
@@ -62,9 +63,15 @@
                                         ButtonText="{x:Static properties:Resources.Transfer}"
                                         Click="OnTransferClicked"/>
 
-                <custom:CustomAccentButton Grid.Row="9" x:Name="ReturnHomeButton"
+                <custom:CustomRedButton Grid.Row="9" x:Name="ResetButton"
                                         Height="45"
-                                        Margin="0,25,0,0"
+                                        Margin="0,15,0,0"
+                                        ButtonText="{x:Static properties:Resources.Reset}"
+                                        Click="OnResetClicked"/>
+
+                <custom:CustomAccentButton Grid.Row="10" x:Name="ReturnHomeButton"
+                                        Height="45"
+                                        Margin="0,15,0,0"
                                         ButtonText="{x:Static properties:Resources.ReturnToHomepage}"
                                         Click="OnReturnHomeClicked"/>
 

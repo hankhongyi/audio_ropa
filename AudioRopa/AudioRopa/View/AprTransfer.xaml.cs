@@ -47,6 +47,7 @@ namespace AudioRopa.View
                 DisableButtons();
                 Debug.WriteLine("ChannelName:" + aprInformation.ChannelName);
                 Debug.WriteLine("Password:" + aprInformation.Password);
+                //Execute a sequence of commands by calling write function.
                 aprOperator.write(aprInformation);
             }
             else
@@ -62,6 +63,28 @@ namespace AudioRopa.View
             }
         }
 
+        private void OnResetClicked(object sender, RoutedEventArgs e)
+        {
+            TransferStatusText.Text = "";
+            string portName = PortComboBox.SelectedItem?.ToString() ?? string.Empty;
+            Debug.WriteLine("portName:" + portName);
+            if (aprInformation != null && portName != string.Empty)
+            {
+                aprInformation.Port = portName;
+                Debug.WriteLine("aprInformation.Port:" + aprInformation.Port);
+                DisableButtons();
+                //Execute turn auracast off command.
+                aprOperator.SetAprAuracastOnOff(aprInformation, false);
+            }
+            else
+            {
+                if (aprInformation == null || portName == string.Empty)
+                {
+                    TransferStatusText.Text = Properties.Resources.Error_Apr_Not_Connect;
+                }
+            }
+        }
+
         private void OnCancelClicked(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("On Cancel Button Clicked");
@@ -72,6 +95,15 @@ namespace AudioRopa.View
         private void HandleSettingTransferClicked(AprInfo aprInfo)
         {
             aprInformation = aprInfo;
+            TransferButton.Visibility = Visibility.Visible;
+            ResetButtons.Visibility = Visibility.Collapsed;
+        }
+
+        private void HandleSettingResetClicked(AprInfo aprInfo)
+        {
+            aprInformation = aprInfo;
+            TransferButton.Visibility = Visibility.Collapsed;
+            ResetButtons.Visibility = Visibility.Visible;
         }
 
         private void HandleChannelNameChanged(AprInfo aprInfo)
@@ -123,6 +155,7 @@ namespace AudioRopa.View
             }
             _isInitialized = true;
             appCommunicator.OnAprSettingTransferClicked += HandleSettingTransferClicked;
+            appCommunicator.OnAprSettingResetClicked += HandleSettingResetClicked;
             appCommunicator.OnAprChannelNameChanged += HandleChannelNameChanged;
             appCommunicator.OnAprPassowrdChanged += HandlePasswordChanged;
             appCommunicator.OnAptConnectClicked += HandleAptConnectClicked;
@@ -136,6 +169,7 @@ namespace AudioRopa.View
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             appCommunicator.OnAprSettingTransferClicked -= HandleSettingTransferClicked;
+            appCommunicator.OnAprSettingResetClicked -= HandleSettingResetClicked;
             appCommunicator.OnAprChannelNameChanged -= HandleChannelNameChanged;
             appCommunicator.OnAprPassowrdChanged -= HandlePasswordChanged;
             appCommunicator.OnAptConnectClicked -= HandleAptConnectClicked;
@@ -206,13 +240,28 @@ namespace AudioRopa.View
 
         private void EnableButtons()
         {
-            ConnectButton.IsEnabled = true;
+            if (TransferButton.Visibility == Visibility.Visible)
+            {
+                TransferButton.IsEnabled = true;
+            }
+            else if (ResetButtons.Visibility == Visibility.Visible)
+            {
+                ResetButtons.IsEnabled = true;
+            }
+
             CancelButton.IsEnabled = true;
         }
 
         private void DisableButtons()
         {
-            ConnectButton.IsEnabled = false;
+            if (TransferButton.Visibility == Visibility.Visible)
+            {
+                TransferButton.IsEnabled = false;
+            }
+            else if (ResetButtons.Visibility == Visibility.Visible)
+            {
+                ResetButtons.IsEnabled = false;
+            }
             CancelButton.IsEnabled = false;
         }
     }

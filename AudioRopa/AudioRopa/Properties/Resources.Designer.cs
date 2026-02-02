@@ -412,6 +412,15 @@ namespace AudioRopa.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 Reset 的當地語系化字串。
+        /// </summary>
+        public static string Reset {
+            get {
+                return ResourceManager.GetString("Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 Return to homepage 的當地語系化字串。
         /// </summary>
         public static string ReturnToHomepage {

@@ -19,6 +19,7 @@ namespace AudioRopa.Model
         public event Action<bool> OnAgcOnOffChanged;
         public event Action<AuracastInfo> OnAuracastInfoRead;
         public event Action<AprInfo> OnAprSettingTransferClicked;
+        public event Action<AprInfo> OnAprSettingResetClicked;
         public event Action<AprInfo> OnAprChannelNameChanged;
         public event Action<AprInfo> OnAprPassowrdChanged;
         public event Action OnAprTransferClicked;
@@ -69,6 +70,11 @@ namespace AudioRopa.Model
             OnAprSettingTransferClicked.Invoke(aprInfo);
         }
 
+        public void InvokeAprSettingReset(AprInfo aprInfo)
+        {
+            OnAprSettingResetClicked.Invoke(aprInfo);
+        }
+
         public void InvokeAprTranfer()
         {
             OnAprTransferClicked.Invoke();
@@ -78,6 +84,7 @@ namespace AudioRopa.Model
         {
             OnAprTransferCancelled.Invoke();
         }
+
 
         public void InvokeReturnHome()
         {
